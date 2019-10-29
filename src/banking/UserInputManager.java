@@ -9,6 +9,6 @@ package banking;
  *
  * @author cstuser
  */
-public class UserInputManager implements IUserInputManager{
+public class UserInputManager {
     
 }

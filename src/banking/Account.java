@@ -9,6 +9,6 @@ package banking;
  *
  * @author cstuser
  */
-public class Account implements IAccount{
+public class Account {
     
 }

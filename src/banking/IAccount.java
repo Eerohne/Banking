@@ -39,11 +39,11 @@ public interface IAccount {
     String toString();
 
     /**
-     * Update the account balance with the amount of the withdrawl
+     * Update the account balance with the amount of the withdrawal
      * Create the corresponding Transaction element and add it to the transactions list
      * 
      * return the new balance
      */
-    double withdrawl(double w);
+    double withdrawal(double w);
     
 }

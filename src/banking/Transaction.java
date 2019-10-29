@@ -9,6 +9,6 @@ package banking;
  *
  * @author cstuser
  */
-public class Transaction implements ITransaction{
+public class Transaction {
     
 }

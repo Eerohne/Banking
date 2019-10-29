@@ -9,6 +9,6 @@ package banking;
  *
  * @author cstuser
  */
-public class Client implements IClient{
+public class Client {
     
 }

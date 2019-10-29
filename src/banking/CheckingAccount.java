@@ -9,6 +9,6 @@ package banking;
  *
  * @author cstuser
  */
-public class Bank {
+public class CheckingAccount {
     
 }
