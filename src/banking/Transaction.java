@@ -21,4 +21,5 @@ public class Transaction implements ITransaction{
     public String toString(){
         return type + " of " + amount + "$";
     }
+    /////////
 }
