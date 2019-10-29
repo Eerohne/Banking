@@ -9,6 +9,16 @@ package banking;
  *
  * @author cstuser
  */
-public class Transaction {
+public class Transaction implements ITransaction{
+    public String type;
+    public double amount;
     
+    public Transaction(String type, double amount) {
+        this.type = type;
+        this.amount = amount;
+    }
+    
+    public String toString(){
+        return type + " of " + amount + "$";
+    }
 }
