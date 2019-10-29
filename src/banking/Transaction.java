@@ -12,6 +12,7 @@ package banking;
 public class Transaction implements ITransaction{
     public String type;
     public double amount;
+    public int helo;
     
     public Transaction(String type, double amount) {
         this.type = type;
@@ -21,4 +22,5 @@ public class Transaction implements ITransaction{
     public String toString(){
         return type + " of " + amount + "$";
     }
+    
 }
