@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Account implements IAccount{
     
+    //Initialise variables - Abderrahman
     protected int accountNumber;
     protected double balance;
     protected ArrayList<Transaction> transactions = new ArrayList<Transaction>();
@@ -20,28 +21,41 @@ public class Account implements IAccount{
     protected String owner;
     protected int counter;
     
+    //Constructor - Abderrahman
     public Account(String type) {
         this.type = type;
     }
-
-    @Override
-    public double deposit(double d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void displayAllTransactions() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
+    //Getter to get the transaction list - Abderrahman
     @Override
     public ArrayList<Transaction> getTransactions() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.transactions;
     }
 
+    //Update the balance after with deposit - Abderrahman
+    @Override
+    public double deposit(double d) {
+        this.balance += d;
+        this.transactions.add(new Transaction("Withdrawal", d));
+        
+        return this.balance;
+    }
+
+    //Print all transactions - Abderrahman
+    @Override
+    public void displayAllTransactions() {
+        for (Transaction transaction : transactions) {
+            System.out.println(transaction.toString());
+        }
+    }
+    
+    ///Update balance with withdrawal - Abderrahman
     @Override
     public double withdrawal(double w) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.balance -= w;
+        this.transactions.add(new Transaction("Withdrawal", w));
+        
+        return this.balance;
     }
     
 }
