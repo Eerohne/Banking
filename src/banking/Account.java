@@ -20,7 +20,7 @@ public class Account implements IAccount{
     protected String type;
     protected String owner;
     protected int counter;
-    public int a;
+    
     
     //Constructor - Abderrahman
     public Account(String type) {

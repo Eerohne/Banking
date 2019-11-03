@@ -7,9 +7,9 @@ package banking;
 
 //Merouane Issad
 public class Transaction implements ITransaction{
-    public String type;
-    public double amount;
-    public int helo;
+    private String type;
+    private double amount;
+    
     
     public Transaction(String type, double amount) {
         this.type = type;
@@ -17,7 +17,7 @@ public class Transaction implements ITransaction{
     }
     
     public String toString(){
-        return type + " of " + amount + "$";
+        return this.type + " of " + this.amount + "$";
     }
     
 }
