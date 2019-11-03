@@ -6,10 +6,7 @@
 
 package banking;
 
-/**
- *
- * @author raphaelr
- */
+//Merouane Issad
 public interface ITransaction {
 
     /**

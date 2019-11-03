@@ -5,10 +5,7 @@
  */
 package banking;
 
-/**
- *
- * @author cstuser
- */
+//Merouane Issad
 public class Transaction implements ITransaction{
     public String type;
     public double amount;
