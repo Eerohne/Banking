@@ -19,12 +19,14 @@ public class Account implements IAccount{
     protected ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     protected String type;
     protected String owner;
-    protected int counter;
+    public static int counter;
     
     
     //Constructor - Abderrahman
     public Account(String type) {
         this.type = type;
+        ++counter;
+        this.accountNumber = counter;
     }
 
     public int getAccountNumber() {
@@ -57,14 +59,6 @@ public class Account implements IAccount{
 
     public void setOwner(String owner) {
         this.owner = owner;
-    }
-
-    public int getCounter() {
-        return this.counter;
-    }
-
-    public void setCounter(int counter) {
-        this.counter = counter;
     }
     
     //Getter to get the transaction list - Abderrahman
