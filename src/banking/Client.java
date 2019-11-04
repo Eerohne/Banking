@@ -16,13 +16,14 @@ public class Client implements IClient{
     protected String firstName;
     protected String lastName;
     protected ArrayList<Account> accountList;
-    protected static int counter;
+    protected static int counter = 0;
 
     public Client(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.id = this.counter;
+        this.accountList = new ArrayList<Account>();
         counter++;
+        this.id = this.counter;
     }
     
     
@@ -51,17 +52,45 @@ public class Client implements IClient{
         return null;
     }
 
-    //getters for this class --Jean
+    //getters and setters for the class --Jean
     public int getId() {
         return this.id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
+    }
+    
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public ArrayList<Account> getAccountList() {
+        return this.accountList;
+    }
+
+    public void setAccountList(ArrayList<Account> accountList) {
+        this.accountList = accountList;
+    }
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    public static void setCounter(int counter) {
+        Client.counter = counter;
     }
     
     
