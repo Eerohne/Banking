@@ -23,12 +23,18 @@ public class Account implements IAccount{
     
     
     //Constructor - Abderrahman
-    public Account(String type, Client client) {
+    public Account(String type){
+        this.type = type;
+        counter++;
+        this.accountNumber = counter;
+    }
+    
+    /*public Account(String type, Client client) {
         this.type = type;
         counter++;
         this.accountNumber = counter;
         this.owner = client.getFirstName() + " " + client.getLastName();
-    }
+    }*/
 
     public int getAccountNumber() {
         return this.accountNumber;
