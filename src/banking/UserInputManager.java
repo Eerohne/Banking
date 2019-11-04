@@ -6,7 +6,7 @@
 package banking;
 
 import java.util.Scanner;
-//Merouane Issad
+//Merouane Issad : The whole class
 public class UserInputManager implements IUserInputManager{
 
     Scanner scan = new Scanner(System.in);
@@ -19,8 +19,22 @@ public class UserInputManager implements IUserInputManager{
 
    
     public Account retrieveAccountType() {
-        Account a = new Account("h");
-         return a;
+        System.out.print("Input client type : ");
+        String type = scan.next();
+        if(type == "checking"){
+         CheckingAccount checkingAccount = new CheckingAccount();
+         return checkingAccount;
+        }
+        else 
+        if(type == "savings"){
+         SavingsAccount savingsAccount = new SavingsAccount();
+         return savingsAccount;
+        }
+        else
+        {
+         CheckingAccount checkingAccount = new CheckingAccount();
+         return checkingAccount; 
+        }
     }
 
     
@@ -32,8 +46,13 @@ public class UserInputManager implements IUserInputManager{
 
    
     public Client retrieveClientInfo() {
-        Client a = new Client("a", "b");
-        return a;
+       System.out.print("Input client first name : ");
+       String firstName = scan.next();
+       System.out.print("Input client last name : ");
+       String lastName = scan.next();
+       
+       Client client = new Client(firstName, lastName);
+       return client;
     }
 
     
