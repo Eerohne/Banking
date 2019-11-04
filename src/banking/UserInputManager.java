@@ -9,6 +9,30 @@ package banking;
  *
  * @author cstuser
  */
-public class UserInputManager {
+public class UserInputManager implements IUserInputManager{
+
+    
+    public int retrieveAccountNumber() {
+       
+
+   
+    public Account retrieveAccountType() {
+    }
+
+    
+    public int retrieveClientId() {
+    }
+
+   
+    public Client retrieveClientInfo() {
+    }
+
+    
+    public double retrieveTransactionAmount() {
+    }
+
+   
+    public int retrieveUserOption() {
+    }
     
 }
