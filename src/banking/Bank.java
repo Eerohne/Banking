@@ -15,6 +15,7 @@ public class Bank implements IBank{
     protected int bankNumber;
     protected String address;
     protected ArrayList<Client> clientList;
+    public int test;
 
     public Bank(int bankNumber, String address) {
         this.bankNumber = bankNumber;
