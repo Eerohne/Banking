@@ -6,15 +6,15 @@
 package banking;
 
 import java.util.Scanner;
-
+//Merouane Issad
 public class UserInputManager implements IUserInputManager{
 
     Scanner scan = new Scanner(System.in);
     
     public int retrieveAccountNumber() {
-        System.out.print("Input it : ");
-        int a = scan.nextInt();
-        return 1;
+        System.out.print("Input account number : ");
+        int number = scan.nextInt();
+        return number;
     }
 
    
@@ -25,7 +25,9 @@ public class UserInputManager implements IUserInputManager{
 
     
     public int retrieveClientId() {
-        return 1;
+        System.out.print("Input client id : ");
+        int id = scan.nextInt();
+        return id;
     }
 
    
@@ -36,12 +38,16 @@ public class UserInputManager implements IUserInputManager{
 
     
     public double retrieveTransactionAmount() {
-        return 1;
+        System.out.print("Input transaction amount : ");
+        double amount = scan.nextDouble();
+        return amount;
     }
 
    
     public int retrieveUserOption() {
-        return 1;
+        System.out.print("Choose an option : ");
+        int choise = scan.nextInt();
+        return choise;
     }
   
 }

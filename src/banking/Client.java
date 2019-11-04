@@ -29,7 +29,7 @@ public class Client implements IClient{
     //create new Account --Jean
     @Override
     public void addAccount(Account newAccount) {
-        accountList.add(new Account());
+        accountList.add(newAccount);
     }
 
     //print all accounts --Jean
