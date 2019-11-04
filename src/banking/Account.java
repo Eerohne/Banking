@@ -27,6 +27,7 @@ public class Account implements IAccount{
         this.type = type;
         ++counter;
         this.accountNumber = counter;
+        
     }
 
     public int getAccountNumber() {
