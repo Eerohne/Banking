@@ -23,11 +23,11 @@ public class Account implements IAccount{
     
     
     //Constructor - Abderrahman
-    public Account(String type) {
+    public Account(String type, Client client) {
         this.type = type;
-        ++counter;
+        counter++;
         this.accountNumber = counter;
-        
+        this.owner = client.getFirstName() + " " + client.getLastName();
     }
 
     public int getAccountNumber() {
@@ -94,4 +94,9 @@ public class Account implements IAccount{
         return this.balance;
     }
     
+    public String toString(){
+        return "Owner: " + this.owner + "; Account Number: " + 
+                this.accountNumber + "; Type: " + this.type.toUpperCase() 
+                + "; Balance: " + this.balance;
+    }
 }
