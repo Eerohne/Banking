@@ -11,8 +11,8 @@ package banking;
  */
 public class CheckingAccount extends Account{
     
-    public CheckingAccount(Client client) {
-        super("checking", client);
+    public CheckingAccount() {
+        super("checking");
     }
     
 }
