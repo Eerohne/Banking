@@ -26,6 +26,46 @@ public class Account implements IAccount{
     public Account(String type) {
         this.type = type;
     }
+
+    public int getAccountNumber() {
+        return this.accountNumber;
+    }
+
+    public void setAccountNumber(int accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public double getBalance() {
+        return this.balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getOwner() {
+        return this.owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public int getCounter() {
+        return this.counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
     
     //Getter to get the transaction list - Abderrahman
     @Override
