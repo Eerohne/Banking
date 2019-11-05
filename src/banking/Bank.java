@@ -15,7 +15,6 @@ public class Bank implements IBank{
     protected int bankNumber;
     protected String address;
     protected ArrayList<Client> clientList;
-    public int test;
 
     public Bank(int bankNumber, String address) {
         this.bankNumber = bankNumber;
@@ -45,8 +44,8 @@ public class Bank implements IBank{
     @Override
     public void displayClientList() {
         for(Client client: clientList){
-            System.out.println("name: " +client.getFirstName()+ " " +client.getLastName());
-            System.out.println("id: " + client.getId());
+            System.out.println("List of current clients: ");
+            System.out.println("("+client.getId()+")"+client.getFirstName()+", "+client.getLastName());
         }
     }
 
