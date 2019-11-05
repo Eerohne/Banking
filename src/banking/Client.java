@@ -86,7 +86,7 @@ public class Client implements IClient{
     }
 
     public static int getCounter() {
-        return counter;
+        return Client.counter;
     }
 
     public static void setCounter(int counter) {
