@@ -108,6 +108,6 @@ public class Account implements IAccount{
     public String toString(){
         return "Owner: " + this.owner + "; Account Number: " + 
                 this.accountNumber + "; Type: " + this.type.toUpperCase() 
-                + "; Balance: " + this.balance;
+                + "; Balance: " + this.balance + "$";
     }
 }
