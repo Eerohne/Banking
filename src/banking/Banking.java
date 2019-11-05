@@ -46,6 +46,7 @@ public class Banking {
                 break;
             case 7:
                 Client client = bank.getClient(uim.retrieveClientId());
+                System.out.println("Accounts for " +client.getFirstName()+", "+client.getLastName()+ "("+client.getId()+"):");
                 client.displayAccounts();
                 break;
         }
