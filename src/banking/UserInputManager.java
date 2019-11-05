@@ -19,21 +19,29 @@ public class UserInputManager implements IUserInputManager{
 
    
     public Account retrieveAccountType() {
-        System.out.print("Input client type : ");
-        String type = scan.next();
-        if(type == "checking"){
-         CheckingAccount checkingAccount = new CheckingAccount();
-         return checkingAccount;
-        }
-        else 
-        if(type == "savings"){
-         SavingsAccount savingsAccount = new SavingsAccount();
-         return savingsAccount;
-        }
-        else
+        System.out.println("Account Types: ");
+        System.out.println("[1] Checking \n[2] Savings");
+        
+        while(true)
         {
-         CheckingAccount checkingAccount = new CheckingAccount();
-         return checkingAccount; 
+        System.out.print("Choose an account type : ");
+        int type = scan.nextInt();
+        
+        switch(type)
+        {
+          
+        case 1:
+            CheckingAccount checkingAccount = new CheckingAccount();
+            return checkingAccount;
+         
+        case 2:
+            SavingsAccount savingsAccount = new SavingsAccount();
+            return savingsAccount;
+            
+        default:
+            System.err.println("Input invalid");
+        }
+        
         }
     }
 
