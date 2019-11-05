@@ -45,7 +45,7 @@ public class Bank implements IBank{
     public void displayClientList() {
         for(Client client: clientList){
             System.out.println("List of current clients: ");
-            System.out.println("("+client.getId()+")"+client.getFirstName()+", "+client.getLastName());
+            System.out.println(client.toString());
         }
     }
 
