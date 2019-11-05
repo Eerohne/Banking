@@ -9,6 +9,8 @@ package banking;
  *
  * @author cstuser
  */
+
+//Done by Abderrahman
 public class SavingsAccount extends Account{
     
     public SavingsAccount() {
