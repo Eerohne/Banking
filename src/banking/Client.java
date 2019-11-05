@@ -51,6 +51,11 @@ public class Client implements IClient{
         }
         return null;
     }
+    
+    //toString for client
+    public String toString(){
+        return "("+this.getId()+")"+this.getFirstName()+", "+this.getLastName();
+    }
 
     //getters and setters for the class --Jean
     public int getId() {
@@ -86,7 +91,7 @@ public class Client implements IClient{
     }
 
     public static int getCounter() {
-        return counter;
+        return Client.counter;
     }
 
     public static void setCounter(int counter) {

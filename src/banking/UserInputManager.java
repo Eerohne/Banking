@@ -72,9 +72,24 @@ public class UserInputManager implements IUserInputManager{
 
    
     public int retrieveUserOption() {
+/*
+Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Account Transaction List Clients List Client Accounts
+*/
+        
+        System.out.println("[1] Add a new Client         [2] Create a new Account \n[3] Make a Deposit           [4] Make a Withdrawal \n[5] List Account Transaction [6] List Clients \n[7] List Client Accounts");
+        while(true)
+       {
         System.out.print("Choose an option : ");
         int choise = scan.nextInt();
+        if(choise > 0 && choise <=7)
+        {
         return choise;
+        }
+        else
+        {
+            System.err.println("Input invalid");
+        }
+       }
     }
   
 }

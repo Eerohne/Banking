@@ -106,8 +106,8 @@ public class Account implements IAccount{
     
     @Override
     public String toString(){
-        return "Owner: " + this.owner + "; Account Number: " + 
-                this.accountNumber + "; Type: " + this.type.toUpperCase() 
-                + "; Balance: " + this.balance + "$";
+        String ans = this.getType()+"("+this.getAccountNumber()+"): "+ this.getBalance()+"$";
+        
+        return ans;
     }
 }
