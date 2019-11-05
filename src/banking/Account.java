@@ -11,6 +11,8 @@ import java.util.ArrayList;
  *
  * @author cstuser
  */
+
+//Class done by Abderrahman
 public class Account implements IAccount{
     
     //Initialise variables - Abderrahman
@@ -22,20 +24,21 @@ public class Account implements IAccount{
     public static int counter;
     
     
-    //Constructor - Abderrahman
+    //Constructors - Abderrahman
     public Account(String type){
         this.type = type;
         counter++;
         this.accountNumber = counter;
     }
     
-    /*public Account(String type, Client client) {
+    public Account(String type, Client client) {
         this.type = type;
         counter++;
         this.accountNumber = counter;
         this.owner = client.getFirstName() + " " + client.getLastName();
-    }*/
+    }
 
+    //Getters and Setter - Abderrahman
     public int getAccountNumber() {
         return this.accountNumber;
     }
@@ -78,7 +81,7 @@ public class Account implements IAccount{
     @Override
     public double deposit(double d) {
         this.balance += d;
-        this.transactions.add(new Transaction("Withdrawal", d));
+        this.transactions.add(new Transaction("Deposit", d));
         
         return this.balance;
     }
@@ -100,6 +103,8 @@ public class Account implements IAccount{
         return this.balance;
     }
     
+    
+    @Override
     public String toString(){
         return "Owner: " + this.owner + "; Account Number: " + 
                 this.accountNumber + "; Type: " + this.type.toUpperCase() 
