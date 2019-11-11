@@ -5,6 +5,12 @@
  */
 package banking;
 
+/*
+ *
+ * We shall add more estetic interfaces, like in the teacher's example.
+ *
+ */
+
 /**
  *
  * @author cstuser
@@ -18,39 +24,64 @@ public class Banking {
         Bank bank = new Bank(3333333, "25 Wall st");
         UserInputManager uim = new UserInputManager();
         
+        System.out.println("Welcome to Bank.");
         while(true){
             int choice = uim.retrieveUserOption();
             
             switch(choice){
                 case 1:
+                    //Checked - Abderrahman
                     bank.addClient(uim.retrieveClientInfo());
                     break;
                 case 2:
+                    //Should expect a null client - Abderrahman for Abderrahman
                     Client client = bank.getClient(uim.retrieveClientId());
-                    Account newAccount = uim.retrieveAccountType();
-                    newAccount.setOwner(client.getFirstName() + " " + client.getLastName());
-                    client.addAccount(newAccount);
+                    if(client != null){
+                        Account newAccount = uim.retrieveAccountType();
+                        newAccount.setOwner(client.getFirstName() + " " + client.getLastName());
+                        client.addAccount(newAccount);
+                    }
+                    else
+                        System.err.println("Please input an existing client ID");
                     break;
                 case 3:
+                    //Should expect a null client - Abderrahman for Abderrahman
                     Account depAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
-                    double d = uim.retrieveTransactionAmount();
-                    depAccount.deposit(d);
-                    depAccount.toString();
+                    if(depAccount != null){
+                        double d = uim.retrieveTransactionAmount();
+                        depAccount.deposit(d);
+                        System.out.println(depAccount.toString());
+                    }
+                    else
+                        System.err.println("Please input an existing account or client ID");
                     break;
                 case 4:
+                    //Should expect a null client - Abderrahman for Abderrahman
                     Account withAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
-                    double w = uim.retrieveTransactionAmount();
-                    withAccount.deposit(w);
-                    withAccount.toString();
+                    if(withAccount != null){
+                        double w = uim.retrieveTransactionAmount();
+                        withAccount.withdrawal(w);
+                        System.out.println(withAccount.toString());
+                    }
+                    else
+                        System.err.println("Please input an existing account or client ID");
                     break;
                 case 5:
+                    //Should expect a null client - Abderrahman for Abderrahman
                     Account transAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
-                    transAccount.displayAllTransactions();
-                    transAccount.toString();
+                    if(transAccount != null){
+                        transAccount.displayAllTransactions();
+                        System.out.println(transAccount.toString());
+                    }
+                    else
+                        System.err.println("Please input an existing account or client ID");
+                    break;
                 case 6:
+                    //Checked - Abderrahman
                     bank.displayClientList();
                     break;
                 case 7:
+                    //Should expect a null client - Abderrahman for Jean
                     Client c = bank.getClient(uim.retrieveClientId());
                     System.out.println("Accounts for " + c.getFirstName() + ", " + c.getLastName() + "(" + c.getId() + "):");
                     c.displayAccounts();

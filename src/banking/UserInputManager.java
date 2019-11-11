@@ -70,7 +70,7 @@ public class UserInputManager implements IUserInputManager{
         return amount;
     }
 
-   
+//Remove checker -- Abderrahman for Merouane   
     public int retrieveUserOption() {
 /*
 Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Account Transaction List Clients List Client Accounts

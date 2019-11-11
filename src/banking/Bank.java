@@ -42,6 +42,7 @@ public class Bank implements IBank{
 
     //diplay all the clients --Jean
     @Override
+    //This function prints "List of current clients: " for every client **TO FIX**- Abderrahman
     public void displayClientList() {
         for(Client client: clientList){
             System.out.println("List of current clients: ");
@@ -60,6 +61,7 @@ public class Bank implements IBank{
         return null;
     }
 
+    //Add a verifier for the client id before passing to the Account checker --Abderrahman for Jean
     //get an account based on accountNumber and id --Jean
     @Override
     public Account getClientAccount(int clientId, int accountNumber) {
