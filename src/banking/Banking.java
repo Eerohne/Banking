@@ -88,7 +88,7 @@ public class Banking {
                     c.displayAccounts();
                     break;
                 default:
-                    System.out.println("Enter a valid command.");
+                    System.out.println("Please enter a valid command.");
             }
         }
     }
