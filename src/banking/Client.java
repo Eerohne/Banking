@@ -36,8 +36,13 @@ public class Client implements IClient{
     //print all accounts --Jean
     @Override
     public void displayAccounts() {
-        for(Account account: accountList){
-            System.out.println(account.toString());
+        if (this.accountList.size()>0){
+            for(Account account: accountList){
+                System.out.println(account.toString());
+            }
+        }
+        else{
+            System.out.println("There are no existing accounts for this client yet.");
         }
     }
 

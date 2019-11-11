@@ -43,9 +43,10 @@ public class Bank implements IBank{
     //diplay all the clients --Jean
     @Override
     //This function prints "List of current clients: " for every client **TO FIX**- Abderrahman
+    //Done --Jean
     public void displayClientList() {
+        System.out.println("List of current clients: ");
         for(Client client: clientList){
-            System.out.println("List of current clients: ");
             System.out.println(client.toString());
         }
     }
@@ -62,15 +63,31 @@ public class Bank implements IBank{
     }
 
     //Add a verifier for the client id before passing to the Account checker --Abderrahman for Jean
+    //Done --Jean
     //get an account based on accountNumber and id --Jean
     @Override
     public Account getClientAccount(int clientId, int accountNumber) {
+        if(isValidId(clientId)){
         for(Client client: clientList){
             if(client.id==clientId){
               return client.getAccount(accountNumber);
             }
         }
+        }
+        else{
+            System.err.println("This id is not valid. please enter a valid id.");
+        }
         return null;
+    }
+    
+    public boolean isValidId(int clientId){
+        boolean isValid= false;
+     for(Client client: clientList){
+            if(client.id==clientId){
+              isValid = true;
+            }
+        }
+     return isValid;
     }
     
     

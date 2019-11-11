@@ -82,10 +82,13 @@ public class Banking {
                     break;
                 case 7:
                     //Should expect a null client - Abderrahman for Jean
+                    //Done --Jean
                     Client c = bank.getClient(uim.retrieveClientId());
                     System.out.println("Accounts for " + c.getFirstName() + ", " + c.getLastName() + "(" + c.getId() + "):");
                     c.displayAccounts();
                     break;
+                default:
+                    System.out.println("Enter a valid command.");
             }
         }
     }
