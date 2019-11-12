@@ -12,19 +12,19 @@ public class UserInputManager implements IUserInputManager{
     Scanner scan = new Scanner(System.in);
     
     public int retrieveAccountNumber() {
-        System.out.print("Input account number : ");
+        System.out.print("* Input account number : ");
         int number = scan.nextInt();
         return number;
     }
 
    
     public Account retrieveAccountType() {
-        System.out.println("Account Types: ");
-        System.out.println("[1] Checking \n[2] Savings");
+        System.out.println("* Account Types: ");
+        System.out.println("*[1] Checking \n*[2] Savings");
         
         while(true)
         {
-        System.out.print("Choose an account type : ");
+        System.out.print("* Choose an account type : ");
         int type = scan.nextInt();
         
         switch(type)
@@ -39,7 +39,7 @@ public class UserInputManager implements IUserInputManager{
             return savingsAccount;
             
         default:
-            System.err.println("Input invalid");
+            System.err.println("* Input invalid");
         }
         
         }
@@ -47,16 +47,16 @@ public class UserInputManager implements IUserInputManager{
 
     
     public int retrieveClientId() {
-        System.out.print("Input client id : ");
+        System.out.print("* Input client id : ");
         int id = scan.nextInt();
         return id;
     }
 
    
     public Client retrieveClientInfo() {
-       System.out.print("Input client first name : ");
+       System.out.print("* Input client first name : ");
        String firstName = scan.next();
-       System.out.print("Input client last name : ");
+       System.out.print("* Input client last name : ");
        String lastName = scan.next();
        
        Client client = new Client(firstName, lastName);
@@ -65,7 +65,7 @@ public class UserInputManager implements IUserInputManager{
 
     
     public double retrieveTransactionAmount() {
-        System.out.print("Input transaction amount : ");
+        System.out.print("* Input transaction ammount : ");
         double amount = scan.nextDouble();
         return amount;
     }
@@ -75,10 +75,15 @@ public class UserInputManager implements IUserInputManager{
 /*
 Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Account Transaction List Clients List Client Accounts
 */
-        System.out.println("[1] Add a new Client         [2] Create a new Account \n[3] Make a Deposit           [4] Make a Withdrawal \n[5] List Account Transaction [6] List Clients \n[7] List Client Accounts");
-        System.out.print("Choose an option : ");
+        System.out.println("********************************************************\n"
+        + "*[1] Add a new Client         [2] Create a new Account *"
+        + "\n*[3] Make a Deposit           [4] Make a Withdrawal    *"
+        + "\n*[5] List Account Transaction [6] List Clients         *"
+        + "\n*[7] List Client Accounts                              *\n" 
+        + "********************************************************");
+        System.out.print("* Choose an option : ");
         int choise = scan.nextInt();
         return choise;
     }
-  
+    
 }

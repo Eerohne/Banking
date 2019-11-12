@@ -24,7 +24,9 @@ public class Banking {
         Bank bank = new Bank(3333333, "25 Wall st");
         UserInputManager uim = new UserInputManager();
         
-        System.out.println("Welcome to Bank.");
+        
+        
+        System.out.println("\u001b[34m" + "Welcome " + "\u001b[35m" + "to " +  "\u001b[32m" + "Bank!");
         while(true){
             int choice = uim.retrieveUserOption();
             
@@ -81,16 +83,15 @@ public class Banking {
                     bank.displayClientList();
                     break;
                 case 7:
-                    //Should expect a null client - Abderrahman for Jean
+                    //Should expect a null account - Abderrahman for Jean
                     //Done --Jean
                     Client c = bank.getClient(uim.retrieveClientId());
                     System.out.println("Accounts for " + c.getFirstName() + ", " + c.getLastName() + "(" + c.getId() + "):");
                     c.displayAccounts();
                     break;
                 default:
-                    System.out.println("Please enter a valid command.");
+                    System.err.println("Please enter a valid command.");
             }
         }
     }
-    
 }
