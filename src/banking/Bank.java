@@ -67,16 +67,16 @@ public class Bank implements IBank{
     //get an account based on accountNumber and id --Jean
     @Override
     public Account getClientAccount(int clientId, int accountNumber) {
-        if(isValidId(clientId)){
+        //if(isValidId(clientId)){
         for(Client client: clientList){
             if(client.id==clientId){
               return client.getAccount(accountNumber);
             }
         }
-        }
-        else{
+        //}
+        /*else{
             System.err.println("This id is not valid. please enter a valid id.");
-        }
+        }*/
         return null;
     }
     
