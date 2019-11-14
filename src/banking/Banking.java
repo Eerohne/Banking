@@ -8,7 +8,7 @@ package banking;
 /*
  *
  * We shall add more estetic interfaces, like in the teacher's example.
- *
+ * //Done
  */
 
 /**
@@ -37,6 +37,7 @@ public class Banking {
                     break;
                 case 2:
                     //Should expect a null client - Abderrahman for Abderrahman
+                    //Done
                     Client client = bank.getClient(uim.retrieveClientId());
                     if(client != null){
                         Account newAccount = uim.retrieveAccountType();
@@ -48,6 +49,7 @@ public class Banking {
                     break;
                 case 3:
                     //Should expect a null client - Abderrahman for Abderrahman
+                    //Done 
                     Account depAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
                     if(depAccount == null){
                         System.err.println("Please input an existing account or client ID");
@@ -60,6 +62,7 @@ public class Banking {
                     break;
                 case 4:
                     //Should expect a null client - Abderrahman for Abderrahman
+                    //Done
                     Account withAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
                     if(withAccount == null){
                         System.err.println("Please input an existing account or client ID");
@@ -72,6 +75,7 @@ public class Banking {
                     break;
                 case 5:
                     //Should expect a null client - Abderrahman for Abderrahman
+                    //Done
                     Account transAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
                     if(transAccount != null){
                         transAccount.displayAllTransactions();
