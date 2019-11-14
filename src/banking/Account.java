@@ -90,7 +90,7 @@ public class Account implements IAccount{
     @Override
     public void displayAllTransactions() {
         for (Transaction transaction : transactions) {
-            System.out.println(transaction.toString());
+            System.out.println("* " + transaction.toString());
         }
     }
     

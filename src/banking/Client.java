@@ -38,11 +38,11 @@ public class Client implements IClient{
     public void displayAccounts() {
         if (this.accountList.size()>0){
             for(Account account: accountList){
-                System.out.println(account.toString());
+                System.out.println("* " + account.toString());
             }
         }
         else{
-            System.out.println("Please enter an existing account.");
+            System.err.println("Please enter an existing account.");
         }
     }
 

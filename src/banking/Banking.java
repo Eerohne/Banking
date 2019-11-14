@@ -75,7 +75,7 @@ public class Banking {
                     Account transAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
                     if(transAccount != null){
                         transAccount.displayAllTransactions();
-                        System.out.println(transAccount.toString());
+                        System.out.println("* " + transAccount.toString());
                     }
                     else
                         System.err.println("Please input an existing account or client ID");
@@ -89,7 +89,7 @@ public class Banking {
                     //Done --Jean
                     Client c = bank.getClient(uim.retrieveClientId());
                     if (c!=null){
-                        System.out.println("Accounts for " + c.getFirstName() + ", " + c.getLastName() + "(" + c.getId() + "):");
+                        System.out.println("* Accounts for " + c.getFirstName() + ", " + c.getLastName() + "(" + c.getId() + "):");
                         c.displayAccounts();
                     }
                     else{
