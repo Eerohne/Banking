@@ -26,7 +26,7 @@ public class Banking {
         
         
         
-        System.out.println("\u001b[34m" + "Welcome " + "\u001b[35m" + "to " +  "\u001b[32m" + "Bank!");
+        System.out.println("\u001b[34m" + "Welcome " + "\u001b[35m" + "to " +  "\u001b[32m" + "Bank!" + "\u001b[0m");
         while(true){
             int choice = uim.retrieveUserOption();
             
@@ -49,24 +49,26 @@ public class Banking {
                 case 3:
                     //Should expect a null client - Abderrahman for Abderrahman
                     Account depAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
-                    if(depAccount != null){
+                    if(depAccount == null){
+                        System.err.println("Please input an existing account or client ID");
+                    }
+                    else{
                         double d = uim.retrieveTransactionAmount();
                         depAccount.deposit(d);
                         System.out.println(depAccount.toString());
                     }
-                    else
-                        System.err.println("Please input an existing account or client ID");
                     break;
                 case 4:
                     //Should expect a null client - Abderrahman for Abderrahman
                     Account withAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
-                    if(withAccount != null){
+                    if(withAccount == null){
+                        System.err.println("Please input an existing account or client ID");
+                    }
+                    else{
                         double w = uim.retrieveTransactionAmount();
                         withAccount.withdrawal(w);
                         System.out.println(withAccount.toString());
                     }
-                    else
-                        System.err.println("Please input an existing account or client ID");
                     break;
                 case 5:
                     //Should expect a null client - Abderrahman for Abderrahman
