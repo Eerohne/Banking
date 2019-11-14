@@ -19,9 +19,8 @@ public class UserInputManager implements IUserInputManager{
 
    
     public Account retrieveAccountType() {
-        System.out.println("*[1] Checking \n*[2] Savings");
         System.out.println("> Account Types: ");
-
+        System.out.println("*[1] Checking \n*[2] Savings");
         
         while(true)
         {
