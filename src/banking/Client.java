@@ -42,7 +42,7 @@ public class Client implements IClient{
             }
         }
         else{
-            System.err.println("Please enter an existing account.");
+            System.err.println("Client has no accounts under their name.");
         }
     }
 
