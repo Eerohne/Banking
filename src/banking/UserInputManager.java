@@ -24,23 +24,23 @@ public class UserInputManager implements IUserInputManager{
         
         while(true)
         {
-        System.out.print("> Choose an account type : ");
-        int type = scan.nextInt();
-        
-        switch(type)
-        {
-          
-        case 1:
-            CheckingAccount checkingAccount = new CheckingAccount();
-            return checkingAccount;
-         
-        case 2:
-            SavingsAccount savingsAccount = new SavingsAccount();
-            return savingsAccount;
-            
-        default:
-            System.err.println("> Input invalid");
-        }
+            System.out.print("> Choose an account type : ");
+            int type = scan.nextInt();
+
+            switch(type)
+            {
+
+            case 1:
+                CheckingAccount checkingAccount = new CheckingAccount();
+                return checkingAccount;
+
+            case 2:
+                SavingsAccount savingsAccount = new SavingsAccount();
+                return savingsAccount;
+
+            default:
+                System.err.println("> Input invalid");
+            }
         
         }
     }
@@ -79,11 +79,11 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
         + "*[1] Add a new Client         [2] Create a new Account *"
         + "\n*[3] Make a Deposit           [4] Make a Withdrawal    *"
         + "\n*[5] List Account Transaction [6] List Clients         *"
-        + "\n*[7] List Client Accounts                              *\n" 
+        + "\n*[7] List Client Accounts     [0] Exit                 *\n" 
         + "********************************************************");
         System.out.print("> Choose an option : ");
-        int choise = scan.nextInt();
-        return choise;
+        int choice = scan.nextInt();
+        return choice;
     }
     
 }

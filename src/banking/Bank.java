@@ -47,7 +47,7 @@ public class Bank implements IBank{
     public void displayClientList() {
         System.out.println("* List of current clients: ");
         for(Client client: clientList){
-            System.out.println("* " + client.toString());
+            System.out.println(client);
         }
     }
 
@@ -55,7 +55,7 @@ public class Bank implements IBank{
     @Override
     public Client getClient(int id) {
         for(Client client: clientList){
-            if(client.id==id){
+            if(client.getId()==id){
                 return client;
             }
         }
@@ -69,26 +69,15 @@ public class Bank implements IBank{
     public Account getClientAccount(int clientId, int accountNumber) {
         //if(isValidId(clientId)){
         for(Client client: clientList){
-            if(client.id==clientId){
+            if(client.getId()==clientId){
               return client.getAccount(accountNumber);
             }
         }
-        //}
-        /*else{
-            System.err.println("This id is not valid. please enter a valid id.");
-        }*/
+        System.err.println("No Client found!");
         return null;
     }
     
-    public boolean isValidId(int clientId){
-        boolean isValid= false;
-     for(Client client: clientList){
-            if(client.id==clientId){
-              isValid = true;
-            }
-        }
-     return isValid;
-    }
+
     
     
 }

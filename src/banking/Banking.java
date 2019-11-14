@@ -7,7 +7,7 @@ package banking;
 
 /*
  *
- * We shall add more estetic interfaces, like in the teacher's example.
+ * We shall add more estetic interfaces.
  * //Done
  */
 
@@ -16,6 +16,8 @@ package banking;
  * @author cstuser
  */
 public class Banking {
+        private static final String GREEN = "\u001b[32m";
+        private static final String BLACK = "\u001b[0m";
 
     /**
      * @param args the command line arguments
@@ -27,10 +29,15 @@ public class Banking {
         
         
         System.out.println("\u001b[34m" + "Welcome " + "\u001b[35m" + "to " +  "\u001b[32m" + "Bank!" + "\u001b[0m");
-        while(true){
+        boolean isRunning = true;
+        
+        while(isRunning){
             int choice = uim.retrieveUserOption();
             
             switch(choice){
+                case 0:
+                    isRunning = false;
+                    break;
                 case 1:
                     //Checked - Abderrahman
                     bank.addClient(uim.retrieveClientInfo());
@@ -52,7 +59,7 @@ public class Banking {
                     //Done 
                     Account depAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
                     if(depAccount == null){
-                        System.err.println("Please input an existing account or client ID");
+                        System.err.println("Please input an existing account");
                     }
                     else{
                         double d = uim.retrieveTransactionAmount();
@@ -63,9 +70,10 @@ public class Banking {
                 case 4:
                     //Should expect a null client - Abderrahman for Abderrahman
                     //Done
+                    
                     Account withAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
                     if(withAccount == null){
-                        System.err.println("Please input an existing account or client ID");
+                        System.err.println("Please input an existing account");
                     }
                     else{
                         double w = uim.retrieveTransactionAmount();
@@ -94,6 +102,9 @@ public class Banking {
                     Client c = bank.getClient(uim.retrieveClientId());
                     if (c!=null){
                         System.out.println("* Accounts for " + c.getFirstName() + ", " + c.getLastName() + "(" + c.getId() + "):");
+                        
+                        System.out.println(GREEN + "* Listing Accounts for: ");
+                        System.out.println(c);
                         c.displayAccounts();
                     }
                     else{

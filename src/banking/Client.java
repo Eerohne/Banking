@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author cstuser
  */
 public class Client implements IClient{
-    protected int id;
+    private int id;
     protected String firstName;
     protected String lastName;
     protected ArrayList<Account> accountList;
@@ -38,7 +38,7 @@ public class Client implements IClient{
     public void displayAccounts() {
         if (this.accountList.size()>0){
             for(Account account: accountList){
-                System.out.println("* " + account.toString());
+                System.out.println(account);
             }
         }
         else{
@@ -59,7 +59,7 @@ public class Client implements IClient{
     
     //toString for client
     public String toString(){
-        return "("+this.getId()+")"+this.getFirstName()+", "+this.getLastName();
+        return "* " + "("+this.getId()+")"+this.getFirstName()+", "+this.getLastName();
     }
 
     //getters and setters for the class --Jean
@@ -102,6 +102,5 @@ public class Client implements IClient{
     public static void setCounter(int counter) {
         Client.counter = counter;
     }
-    
     
 }

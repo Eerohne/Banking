@@ -33,6 +33,6 @@ public class Transaction implements ITransaction{
     }
     
     public String toString(){
-        return this.type + " of " + this.amount + "$";
+        return "* " + this.type + " of " + this.amount + "$";
     }
 }

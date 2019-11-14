@@ -5,6 +5,7 @@
  */
 package banking;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -21,8 +22,8 @@ public class Account implements IAccount{
     protected ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     protected String type;
     protected String owner;
-    public static int counter;
-    
+    private static int counter;
+    private static DecimalFormat df = new DecimalFormat("#,###,##0.00");    
     
     //Constructors - Abderrahman
     public Account(String type){
@@ -31,13 +32,6 @@ public class Account implements IAccount{
         this.accountNumber = counter;
     }
     
-    public Account(String type, Client client) {
-        this.type = type;
-        counter++;
-        this.accountNumber = counter;
-        this.owner = client.getFirstName() + " " + client.getLastName();
-    }
-
     //Getters and Setter - Abderrahman
     public int getAccountNumber() {
         return this.accountNumber;
@@ -90,7 +84,7 @@ public class Account implements IAccount{
     @Override
     public void displayAllTransactions() {
         for (Transaction transaction : transactions) {
-            System.out.println("* " + transaction.toString());
+            System.out.println(transaction);
         }
     }
     
@@ -106,7 +100,7 @@ public class Account implements IAccount{
     
     @Override
     public String toString(){
-        String ans = this.getType()+"("+this.getAccountNumber()+"): "+ this.getBalance()+"$";
+        String ans = "* " + this.getType()+"("+this.getAccountNumber()+"): "+ df.format(this.getBalance())+"$";
         
         return ans;
     }
