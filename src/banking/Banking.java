@@ -44,7 +44,7 @@ public class Banking {
                         client.addAccount(newAccount);
                     }
                     else
-                        System.err.println("Please input an existing client ID");
+                        System.err.println("Please enter an existing client ID");
                     break;
                 case 3:
                     //Should expect a null client - Abderrahman for Abderrahman
@@ -86,8 +86,13 @@ public class Banking {
                     //Should expect a null account - Abderrahman for Jean
                     //Done --Jean
                     Client c = bank.getClient(uim.retrieveClientId());
-                    System.out.println("Accounts for " + c.getFirstName() + ", " + c.getLastName() + "(" + c.getId() + "):");
-                    c.displayAccounts();
+                    if (c!=null){
+                        System.out.println("Accounts for " + c.getFirstName() + ", " + c.getLastName() + "(" + c.getId() + "):");
+                        c.displayAccounts();
+                    }
+                    else{
+                        System.err.println("Please enter an existing client.");
+                    }
                     break;
                 default:
                     System.err.println("Please enter a valid command.");
