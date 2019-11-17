@@ -82,8 +82,14 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
         + "\n*[7] List Client Accounts     [0] Exit                 *\n" 
         + "********************************************************");
         System.out.print("> Choose an option : ");
-        int choice = scan.nextInt();
-        return choice;
+        String input = scan.nextLine();
+        try{
+            int choice = Integer.parseInt(input);
+            return choice;
+        } catch(Exception e){
+            //Add the error message
+            return 8;
+        }
     }
     
 }

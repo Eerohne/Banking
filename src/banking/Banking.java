@@ -16,8 +16,10 @@ package banking;
  * @author cstuser
  */
 public class Banking {
-        private static final String GREEN = "\u001b[32m";
-        private static final String BLACK = "\u001b[0m";
+    private static final String BLACK = "\u001b[0m";
+    private static final String GREEN = "\u001b[32m";
+    private static final String RED = "\u001b[31m";
+    private static final String BLUE = "\u001b[34m";
 
     /**
      * @param args the command line arguments
@@ -28,7 +30,7 @@ public class Banking {
         
         
         
-        System.out.println("\u001b[34m" + "Welcome " + "\u001b[35m" + "to " +  "\u001b[32m" + "Bank!" + "\u001b[0m");
+        System.out.println(BLUE + "Welcome " + RED + "to " +  GREEN + "Bank!" + BLACK);
         boolean isRunning = true;
         
         while(isRunning){
@@ -52,14 +54,14 @@ public class Banking {
                         client.addAccount(newAccount);
                     }
                     else
-                        System.err.println("Please enter an existing client ID");
+                        System.out.println(RED + "Please enter an existing client ID" + BLACK);
                     break;
                 case 3:
                     //Should expect a null client - Abderrahman for Abderrahman
                     //Done 
                     Account depAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
                     if(depAccount == null){
-                        System.err.println("Please input an existing account");
+                        System.out.println(RED + "Please input an existing account" + BLACK);
                     }
                     else{
                         double d = uim.retrieveTransactionAmount();
@@ -73,12 +75,12 @@ public class Banking {
                     
                     Account withAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
                     if(withAccount == null){
-                        System.err.println("Please input an existing account");
+                        System.out.println(RED + "Please input an existing account" + BLACK);
                     }
                     else{
                         double w = uim.retrieveTransactionAmount();
                         withAccount.withdrawal(w);
-                        System.out.println(withAccount.toString());
+                        System.out.println(withAccount);
                     }
                     break;
                 case 5:
@@ -87,10 +89,10 @@ public class Banking {
                     Account transAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
                     if(transAccount != null){
                         transAccount.displayAllTransactions();
-                        System.out.println("* " + transAccount.toString());
+                        System.out.println(transAccount);
                     }
                     else
-                        System.err.println("Please input an existing account or client ID");
+                        System.out.println(RED + "Please input an existing account or client ID" + BLACK);
                     break;
                 case 6:
                     //Checked - Abderrahman
@@ -101,18 +103,18 @@ public class Banking {
                     //Done --Jean
                     Client c = bank.getClient(uim.retrieveClientId());
                     if (c!=null){
-                        System.out.println("* Accounts for " + c.getFirstName() + ", " + c.getLastName() + "(" + c.getId() + "):");
+                        //System.out.println("* Accounts for " + c.getFirstName() + ", " + c.getLastName() + "(" + c.getId() + "):");
                         
-                        System.out.println(GREEN + "* Listing Accounts for: ");
+                        System.out.println("* Listing Accounts for: ");
                         System.out.println(c);
                         c.displayAccounts();
                     }
                     else{
-                        System.err.println("Please enter an existing client.");
+                        System.out.println(RED + "Please enter an existing client." + BLACK);
                     }
                     break;
                 default:
-                    System.err.println("Please enter a valid command.");
+                    System.out.println(RED + "Please enter a valid command." + BLACK);
             }
         }
     }

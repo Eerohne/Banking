@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * @author cstuser
  */
 public class Bank implements IBank{
-    protected int bankNumber;
-    protected String address;
-    protected ArrayList<Client> clientList;
+    private int bankNumber;
+    private String address;
+    private ArrayList<Client> clientList;
 
     public Bank(int bankNumber, String address) {
         this.bankNumber = bankNumber;

@@ -13,10 +13,10 @@ import java.util.ArrayList;
  */
 public class Client implements IClient{
     private int id;
-    protected String firstName;
-    protected String lastName;
-    protected ArrayList<Account> accountList;
-    protected static int counter = 0;
+    private String firstName;
+    private String lastName;
+    private ArrayList<Account> accountList;
+    private static int counter = 0;
 
     public Client(String firstName, String lastName) {
         this.firstName = firstName;
