@@ -11,48 +11,67 @@ public class UserInputManager implements IUserInputManager{
 
     Scanner scan = new Scanner(System.in);
     
+    @Override
     public int retrieveAccountNumber() {
         System.out.print("> Input account number : ");
-        int number = scan.nextInt();
+        int number = 0;
+        try{
+            number = scan.nextInt();
+        } catch(Exception e){
+            printError("> Invalid Input");
+        }
+        scan.nextLine();
         return number;
     }
 
    
+    @Override
     public Account retrieveAccountType() {
         System.out.println("> Account Types: ");
         System.out.println("*[1] Checking \n*[2] Savings");
-        
+        int type;
         while(true)
         {
             System.out.print("> Choose an account type : ");
-            int type = scan.nextInt();
+            try{
+                type = scan.nextInt();
+                switch(type)
+                {
 
-            switch(type)
-            {
+                    case 1:
+                        CheckingAccount checkingAccount = new CheckingAccount();
+                        return checkingAccount;
 
-            case 1:
-                CheckingAccount checkingAccount = new CheckingAccount();
-                return checkingAccount;
-
-            case 2:
-                SavingsAccount savingsAccount = new SavingsAccount();
-                return savingsAccount;
-
-            default:
-                printError("> Input invalid");
+                    case 2:
+                        SavingsAccount savingsAccount = new SavingsAccount();
+                        return savingsAccount;
+                    default:
+                        printError("> Please enter a valid option");
+                }
+            } catch(Exception e){
+                printError("> Invalid input");
             }
-        
+            scan.nextLine();
         }
+        
     }
 
     
+    @Override
     public int retrieveClientId() {
         System.out.print("> Input client id : ");
-        int id = scan.nextInt();
+        int id = 0;
+        try{
+            id = scan.nextInt();
+        } catch(Exception e){
+            printError("> Invalid Input");
+        }
+        scan.nextLine();
         return id;
     }
 
-   
+    
+    @Override
     public Client retrieveClientInfo() {
        System.out.print("> Input client first name : ");
        String firstName = scan.next();
@@ -64,13 +83,22 @@ public class UserInputManager implements IUserInputManager{
     }
 
     
+    @Override
     public double retrieveTransactionAmount() {
         System.out.print("> Input transaction ammount : ");
-        double amount = scan.nextDouble();
+        double amount = 0;
+        try{
+            amount = scan.nextDouble();
+        } catch(Exception e){
+            printError("> Invalid Input");
+        }
+        scan.nextLine();
         return amount;
     }
 
 //Remove checker -- Abderrahman for Merouane   
+    //Done -- Merouane
+    @Override
     public int retrieveUserOption() {
 /*
 Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Account Transaction List Clients List Client Accounts
@@ -87,14 +115,14 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
                 int choice = scan.nextInt();
                 return choice;
             } catch(Exception e){
-                printError("> Please enter a valid command.");
+                printError("> Invalid Input");
             }
-            //Here to clear a line. If you find a better way, modify it. - Abderrahman
+            //Next instruction is to clear a line. If you find a better way, modify it. - Abderrahman
             scan.nextLine();
         }
     }
     
-    
+    //Error printer (Alternative to System.err). - Abderrahman
     public static void printError(String message){
         System.out.println("\u001b[31m" + message + "\u001b[0m");
     }

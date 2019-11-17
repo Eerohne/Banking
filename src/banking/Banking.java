@@ -81,7 +81,7 @@ public class Banking {
                     Client c = bank.getClient(uim.retrieveClientId());
                     if (c!=null){
                         System.out.println("* Listing Accounts for: ");
-                        System.out.println(c);
+                        System.out.println(GREEN + c + BLACK);
                         c.displayAccounts();
                     }
                     break;
