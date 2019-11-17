@@ -59,6 +59,7 @@ public class Bank implements IBank{
                 return client;
             }
         }
+        UserInputManager.printError("* Please enter an existing client.");
         return null;
     }
 
@@ -67,17 +68,19 @@ public class Bank implements IBank{
     //get an account based on accountNumber and id --Jean
     @Override
     public Account getClientAccount(int clientId, int accountNumber) {
-        //if(isValidId(clientId)){
+        //Abderrahman: Added error handling for null accoutn and client.
         for(Client client: clientList){
             if(client.getId()==clientId){
-              return client.getAccount(accountNumber);
+              Account a = client.getAccount(accountNumber);
+              if(a==null){
+                  UserInputManager.printError("* This account does not exist");
+                  return null;
+              }
+               else
+                  return a;
             }
         }
-        System.err.println("No Client found!");
+        UserInputManager.printError("* No Client found!");
         return null;
     }
-    
-
-    
-    
 }

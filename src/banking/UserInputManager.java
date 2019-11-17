@@ -39,7 +39,7 @@ public class UserInputManager implements IUserInputManager{
                 return savingsAccount;
 
             default:
-                System.err.println("> Input invalid");
+                printError("> Input invalid");
             }
         
         }
@@ -81,15 +81,21 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
         + "\n*[5] List Account Transaction [6] List Clients         *"
         + "\n*[7] List Client Accounts     [0] Exit                 *\n" 
         + "********************************************************");
-        System.out.print("> Choose an option : ");
-        String input = scan.nextLine();
-        try{
-            int choice = Integer.parseInt(input);
-            return choice;
-        } catch(Exception e){
-            //Add the error message
-            return 8;
+        while(true){
+            try{
+                System.out.print("> Choose an option : ");
+                int choice = scan.nextInt();
+                return choice;
+            } catch(Exception e){
+                printError("> Please enter a valid command.");
+            }
+            //Here to clear a line. If you find a better way, modify it. - Abderrahman
+            scan.nextLine();
         }
     }
     
+    
+    public static void printError(String message){
+        System.out.println("\u001b[31m" + message + "\u001b[0m");
+    }
 }

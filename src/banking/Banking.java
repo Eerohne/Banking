@@ -20,16 +20,12 @@ public class Banking {
     private static final String GREEN = "\u001b[32m";
     private static final String RED = "\u001b[31m";
     private static final String BLUE = "\u001b[34m";
-
+    private static UserInputManager uim = new UserInputManager();
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         Bank bank = new Bank(3333333, "25 Wall st");
-        UserInputManager uim = new UserInputManager();
-        
-        
-        
         System.out.println(BLUE + "Welcome " + RED + "to " +  GREEN + "Bank!" + BLACK);
         boolean isRunning = true;
         
@@ -53,35 +49,18 @@ public class Banking {
                         newAccount.setOwner(client.getFirstName() + " " + client.getLastName());
                         client.addAccount(newAccount);
                     }
-                    else
-                        System.out.println(RED + "Please enter an existing client ID" + BLACK);
                     break;
                 case 3:
                     //Should expect a null client - Abderrahman for Abderrahman
                     //Done 
                     Account depAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
-                    if(depAccount == null){
-                        System.out.println(RED + "Please input an existing account" + BLACK);
-                    }
-                    else{
-                        double d = uim.retrieveTransactionAmount();
-                        depAccount.deposit(d);
-                        System.out.println(depAccount.toString());
-                    }
+                    executeTransaction(depAccount, true);
                     break;
                 case 4:
                     //Should expect a null client - Abderrahman for Abderrahman
                     //Done
-                    
                     Account withAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
-                    if(withAccount == null){
-                        System.out.println(RED + "Please input an existing account" + BLACK);
-                    }
-                    else{
-                        double w = uim.retrieveTransactionAmount();
-                        withAccount.withdrawal(w);
-                        System.out.println(withAccount);
-                    }
+                    executeTransaction(withAccount, false);
                     break;
                 case 5:
                     //Should expect a null client - Abderrahman for Abderrahman
@@ -91,8 +70,6 @@ public class Banking {
                         transAccount.displayAllTransactions();
                         System.out.println(transAccount);
                     }
-                    else
-                        System.out.println(RED + "Please input an existing account or client ID" + BLACK);
                     break;
                 case 6:
                     //Checked - Abderrahman
@@ -103,19 +80,23 @@ public class Banking {
                     //Done --Jean
                     Client c = bank.getClient(uim.retrieveClientId());
                     if (c!=null){
-                        //System.out.println("* Accounts for " + c.getFirstName() + ", " + c.getLastName() + "(" + c.getId() + "):");
-                        
                         System.out.println("* Listing Accounts for: ");
                         System.out.println(c);
                         c.displayAccounts();
                     }
-                    else{
-                        System.out.println(RED + "Please enter an existing client." + BLACK);
-                    }
                     break;
-                default:
-                    System.out.println(RED + "Please enter a valid command." + BLACK);
             }
+        }
+    }
+    
+    private static void executeTransaction(Account a, boolean isDeposit){
+        if(a!=null){
+            double d = uim.retrieveTransactionAmount();
+            if(isDeposit)
+                a.deposit(d);
+            else
+                a.withdrawal(d);
+            System.out.println(a);
         }
     }
 }
