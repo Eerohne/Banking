@@ -88,8 +88,8 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
         int choice = -1;
         while(choice == -1){
             choice = (int)askInput("> Choose an option : ");
-            if((choice == -1 || choice > 7))
-                printError("> Invalid Input");
+            if((choice <= -1 || choice > 7))
+                printError("* Invalid Input");
         }
         
         return choice;
@@ -106,7 +106,7 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
             System.out.print(prompt);
             number = scan.nextDouble();
         } catch(Exception e){
-            printError("> Invalid Input");
+            printError("* Invalid Input");
         }
         scan.nextLine();
         return number;
