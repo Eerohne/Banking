@@ -42,7 +42,7 @@ public class Client implements IClient{
             }
         }
         else{
-            UserInputManager.printError("Client has no accounts under their name.");
+            UserInputManager.printError("This client has no accounts under their name.");
         }
     }
 

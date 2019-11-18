@@ -41,8 +41,6 @@ public class UserInputManager implements IUserInputManager{
                     printError("> Please enter a valid option");
             }
         }
-        
-        
     }
 
     
