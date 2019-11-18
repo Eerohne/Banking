@@ -13,14 +13,7 @@ public class UserInputManager implements IUserInputManager{
     
     @Override
     public int retrieveAccountNumber() {
-        System.out.print("> Input account number : ");
-        int number = 0;
-        try{
-            number = scan.nextInt();
-        } catch(Exception e){
-            printError("> Invalid Input");
-        }
-        scan.nextLine();
+        int number = (int)askInput("> Input account number : ");
         return number;
     }
 
@@ -29,44 +22,33 @@ public class UserInputManager implements IUserInputManager{
     public Account retrieveAccountType() {
         System.out.println("> Account Types: ");
         System.out.println("*[1] Checking \n*[2] Savings");
-        int type;
+        int type = 0;
         while(true)
         {
-            System.out.print("> Choose an account type : ");
-            try{
-                type = scan.nextInt();
-                switch(type)
-                {
+            type = (int)askInput("> Choose an account type : ");
+            
+            switch(type)
+            {
 
-                    case 1:
-                        CheckingAccount checkingAccount = new CheckingAccount();
-                        return checkingAccount;
+                case 1:
+                    CheckingAccount checkingAccount = new CheckingAccount();
+                    return checkingAccount;
 
-                    case 2:
-                        SavingsAccount savingsAccount = new SavingsAccount();
-                        return savingsAccount;
-                    default:
-                        printError("> Please enter a valid option");
-                }
-            } catch(Exception e){
-                printError("> Invalid input");
+                case 2:
+                    SavingsAccount savingsAccount = new SavingsAccount();
+                    return savingsAccount;
+                default:
+                    printError("> Please enter a valid option");
             }
-            scan.nextLine();
         }
+        
         
     }
 
     
     @Override
     public int retrieveClientId() {
-        System.out.print("> Input client id : ");
-        int id = 0;
-        try{
-            id = scan.nextInt();
-        } catch(Exception e){
-            printError("> Invalid Input");
-        }
-        scan.nextLine();
+        int id = (int)askInput("> Input client id : ");
         return id;
     }
 
@@ -85,14 +67,7 @@ public class UserInputManager implements IUserInputManager{
     
     @Override
     public double retrieveTransactionAmount() {
-        System.out.print("> Input transaction ammount : ");
-        double amount = 0;
-        try{
-            amount = scan.nextDouble();
-        } catch(Exception e){
-            printError("> Invalid Input");
-        }
-        scan.nextLine();
+        double amount = askInput("> Input transaction ammount : ");
         return amount;
     }
 
@@ -109,21 +84,31 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
         + "\n*[5] List Account Transaction [6] List Clients         *"
         + "\n*[7] List Client Accounts     [0] Exit                 *\n" 
         + "********************************************************");
-        while(true){
-            try{
-                System.out.print("> Choose an option : ");
-                int choice = scan.nextInt();
-                return choice;
-            } catch(Exception e){
+        
+        int choice = -1;
+        while(choice == -1){
+            choice = (int)askInput("> Choose an option : ");
+            if((choice == -1 || choice > 7))
                 printError("> Invalid Input");
-            }
-            //Next instruction is to clear a line. If you find a better way, modify it. - Abderrahman
-            scan.nextLine();
         }
+        
+        return choice;
     }
     
     //Error printer (Alternative to System.err). - Abderrahman
     public static void printError(String message){
         System.out.println("\u001b[31m" + message + "\u001b[0m");
+    }
+    
+    private double askInput(String prompt){
+        double number = -1;
+        try{
+            System.out.print(prompt);
+            number = scan.nextDouble();
+        } catch(Exception e){
+            printError("> Invalid Input");
+        }
+        scan.nextLine();
+        return number;
     }
 }
