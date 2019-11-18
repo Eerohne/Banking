@@ -96,7 +96,7 @@ public class Banking {
                 a.deposit(d);
             else
                 a.withdrawal(d);
-            System.out.println(a);
+                System.out.println(a);
         }
     }
 }

@@ -45,10 +45,14 @@ public class Bank implements IBank{
     //This function prints "List of current clients: " for every client **TO FIX**- Abderrahman
     //Done --Jean
     public void displayClientList() {
+        if (this.clientList.size()>0){
         System.out.println("* List of current clients: ");
         for(Client client: clientList){
             System.out.println(client);
         }
+        }
+        else
+            UserInputManager.printError("* This bank has no clients yet");
     }
 
     //get the client by his id --Jean
