@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author cstuser
  */
-public class Client implements IClient{
+public class Client /*implements IClient*/{
     private int id;
     private String firstName;
     private String lastName;
@@ -28,33 +28,33 @@ public class Client implements IClient{
     
     
     //create new Account --Jean
-    @Override
+    //@Override
     public void addAccount(Account newAccount) {
         accountList.add(newAccount);
     }
 
     //print all accounts --Jean
-    @Override
-    public void displayAccounts() {
+    //@Override
+    public void displayAccounts() throws EmptyList{
         if (this.accountList.size()>0){
             for(Account account: accountList){
                 System.out.println(account);
+                return;
             }
         }
-        else{
-            UserInputManager.printError("* This client has no accounts under their name.");
-        }
+        throw new EmptyList("The account list is empty");
     }
 
     //get account by accountNumber --Jean
-    @Override
-    public Account getAccount(int accountNumber) {
+    //@Override
+    public Account getAccount(int accountNumber) throws AccountNotFound{
         for(Account account: accountList){
             if(account.getAccountNumber()==accountNumber){
                 return account;
             }
         }
-        return null;
+        /*Old null*/ 
+        throw new AccountNotFound("The account was not found");
     }
     
     //toString for client

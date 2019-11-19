@@ -5,6 +5,7 @@
  */
 package banking;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 //Merouane Issad : The whole class
 public class UserInputManager implements IUserInputManager{
@@ -104,7 +105,7 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
         try{
             System.out.print(prompt);
             number = scan.nextDouble();
-        } catch(Exception e){
+        } catch(InputMismatchException ime){
             printError("* Invalid Input");
         }
         scan.nextLine();

@@ -21,11 +21,11 @@ public class Banking {
     private static final String RED = "\u001b[31m";
     private static final String BLUE = "\u001b[34m";
     private static UserInputManager uim = new UserInputManager();
+    private static Bank bank = new Bank(3333333, "25 Wall st");
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        Bank bank = new Bank(3333333, "25 Wall st");
+    public static void main(String[] args) throws AccountNotFound, ClientDoesNotExist {
         System.out.println(BLUE + "Welcome " + RED + "to " +  GREEN + "Bank!" + BLACK);
         boolean isRunning = true;
         
@@ -43,32 +43,36 @@ public class Banking {
                 case 2:
                     //Should expect a null client - Abderrahman for Abderrahman
                     //Done
-                    Client client = bank.getClient(uim.retrieveClientId());
-                    if(client != null){
+                    try{
+                        Client client = bank.getClient(uim.retrieveClientId());
                         Account newAccount = uim.retrieveAccountType();
                         newAccount.setOwner(client.getFirstName() + " " + client.getLastName());
                         client.addAccount(newAccount);
+                    } catch(ClientDoesNotExist cdne){
+                        UserInputManager.printError("* The client does not exist");
                     }
                     break;
                 case 3:
                     //Should expect a null client - Abderrahman for Abderrahman
                     //Done 
-                    Account depAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
-                    executeTransaction(depAccount, true);
+                    executeTransaction(true);
                     break;
                 case 4:
                     //Should expect a null client - Abderrahman for Abderrahman
                     //Done
-                    Account withAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
-                    executeTransaction(withAccount, false);
+                    executeTransaction(false);
                     break;
                 case 5:
                     //Should expect a null client - Abderrahman for Abderrahman
                     //Done
-                    Account transAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
-                    if(transAccount != null){
+                    try{
+                        Account transAccount = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
                         transAccount.displayAllTransactions();
                         System.out.println(transAccount);
+                    } catch(ClientDoesNotExist c){
+                        UserInputManager.printError("* The client does not exist");
+                    } catch(AccountNotFound a){
+                        UserInputManager.printError("* The account you entered does not exist");                        
                     }
                     break;
                 case 6:
@@ -78,25 +82,31 @@ public class Banking {
                 case 7:
                     //Should expect a null account - Abderrahman for Jean
                     //Done --Jean
-                    Client c = bank.getClient(uim.retrieveClientId());
-                    if (c!=null){
-                        System.out.println("* Listing Accounts for: ");
-                        System.out.println(GREEN + c + BLACK);
-                        c.displayAccounts();
+                    try{
+                        bank.displayClientAccounts(uim.retrieveClientId());
+                    } catch(ClientDoesNotExist c){
+                        UserInputManager.printError("* The client does not exist");
+                    } catch (EmptyList ex) {
+                        UserInputManager.printError("* Theere is no account under this client");
                     }
                     break;
             }
         }
     }
     
-    private static void executeTransaction(Account a, boolean isDeposit){
-        if(a!=null){
+    private static void executeTransaction(boolean isDeposit){
+        try{
+            Account a = bank.getClientAccount(uim.retrieveClientId(), uim.retrieveAccountNumber());
             double d = uim.retrieveTransactionAmount();
             if(isDeposit)
                 a.deposit(d);
             else
                 a.withdrawal(d);
-                System.out.println(a);
+            System.out.println(a);
+        } catch(ClientDoesNotExist c){
+            UserInputManager.printError("* The client does not exist");
+        } catch(AccountNotFound a){
+            UserInputManager.printError("* The account you entered was not found");                        
         }
     }
 }

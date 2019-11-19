@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author cstuser
  */
-public class Bank implements IBank{
+public class Bank /*implements IBank*/{
     private int bankNumber;
     private String address;
     private ArrayList<Client> clientList;
@@ -25,66 +25,63 @@ public class Bank implements IBank{
     
     
     // add a new Client --Jean
-    @Override
+    //@Override
     public void addClient(Client newClient) {
         clientList.add(newClient);
     }
 
     //display the client's accounts --Jean
-    @Override
-    public void displayClientAccounts(int clientId) {
+    //@Override
+    public void displayClientAccounts(int clientId) throws EmptyList, ClientDoesNotExist{
         for(Client client: clientList){
             if(client.getId()==clientId){
+                System.out.println("* Listing accounts for : ");
+                System.out.print(client);
                 client.displayAccounts();
+                return;
             }
         }
+        throw new ClientDoesNotExist("The client does not exist");
     }
 
     //diplay all the clients --Jean
-    @Override
+    //@Override
     //This function prints "List of current clients: " for every client **TO FIX**- Abderrahman
     //Done --Jean
-    public void displayClientList() {
+    public void displayClientList() throws ClientDoesNotExist{
         if (this.clientList.size()>0){
-        System.out.println("* List of current clients: ");
-        for(Client client: clientList){
-            System.out.println(client);
+            System.out.println("* List of current clients: ");
+            for(Client client: clientList){
+                System.out.println(client);
+                return;
+            }
         }
-        }
-        else
-            UserInputManager.printError("* This bank has no clients yet");
+        throw new ClientDoesNotExist("* This bank has no clients yet");
     }
 
     //get the client by his id --Jean
-    @Override
-    public Client getClient(int id) {
+    //@Override
+    public Client getClient(int id) throws ClientDoesNotExist{
         for(Client client: clientList){
             if(client.getId()==id){
                 return client;
             }
         }
-        UserInputManager.printError("* Please enter an existing client.");
-        return null;
+        throw new ClientDoesNotExist("The client you researched does not exist");
     }
 
     //Add a verifier for the client id before passing to the Account checker --Abderrahman for Jean
     //Done --Jean
     //get an account based on accountNumber and id --Jean
-    @Override
-    public Account getClientAccount(int clientId, int accountNumber) {
+    //@Override
+    public Account getClientAccount(int clientId, int accountNumber) throws AccountNotFound, ClientDoesNotExist{
         //Abderrahman: Added error handling for null accoutn and client.
         for(Client client: clientList){
             if(client.getId()==clientId){
-              Account a = client.getAccount(accountNumber);
-              if(a==null){
-                  UserInputManager.printError("* This account does not exist");
-                  return null;
-              }
-               else
-                  return a;
+                Account a = client.getAccount(accountNumber);
+                return a;
             }
         }
-        UserInputManager.printError("* No Client found!");
-        return null;
+        throw new ClientDoesNotExist("The client you researched does not exist");
     }
 }
