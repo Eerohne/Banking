@@ -49,7 +49,7 @@ public class Banking {
                         newAccount.setOwner(client.getFirstName() + " " + client.getLastName());
                         client.addAccount(newAccount);
                     } catch(ClientDoesNotExist cdne){
-                        UserInputManager.printError("* The client does not exist");
+                        UserInputManager.printError(cdne.getMessage());
                     }
                     break;
                 case 3:
@@ -70,14 +70,18 @@ public class Banking {
                         transAccount.displayAllTransactions();
                         System.out.println(transAccount);
                     } catch(ClientDoesNotExist c){
-                        UserInputManager.printError("* The client does not exist");
+                        UserInputManager.printError(c.getMessage());
                     } catch(AccountNotFound a){
-                        UserInputManager.printError("* The account you entered does not exist");                        
+                        UserInputManager.printError(a.getMessage());                        
                     }
                     break;
                 case 6:
                     //Checked - Abderrahman
-                    bank.displayClientList();
+                    try{
+                        bank.displayClientList();
+                    } catch(EmptyList el){
+                        UserInputManager.printError(el.getMessage());
+                    }
                     break;
                 case 7:
                     //Should expect a null account - Abderrahman for Jean
@@ -85,9 +89,9 @@ public class Banking {
                     try{
                         bank.displayClientAccounts(uim.retrieveClientId());
                     } catch(ClientDoesNotExist c){
-                        UserInputManager.printError("* The client does not exist");
+                        UserInputManager.printError(c.getMessage());
                     } catch (EmptyList ex) {
-                        UserInputManager.printError("* Theere is no account under this client");
+                        UserInputManager.printError(ex.getMessage());
                     }
                     break;
             }
@@ -104,9 +108,9 @@ public class Banking {
                 a.withdrawal(d);
             System.out.println(a);
         } catch(ClientDoesNotExist c){
-            UserInputManager.printError("* The client does not exist");
+            UserInputManager.printError(c.getMessage());
         } catch(AccountNotFound a){
-            UserInputManager.printError("* The account you entered was not found");                        
+            UserInputManager.printError(a.getMessage());                        
         }
     }
 }

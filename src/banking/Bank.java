@@ -36,7 +36,7 @@ public class Bank /*implements IBank*/{
         for(Client client: clientList){
             if(client.getId()==clientId){
                 System.out.println("* Listing accounts for : ");
-                System.out.print(client);
+                System.out.println(client);
                 client.displayAccounts();
                 return;
             }
@@ -48,15 +48,16 @@ public class Bank /*implements IBank*/{
     //@Override
     //This function prints "List of current clients: " for every client **TO FIX**- Abderrahman
     //Done --Jean
-    public void displayClientList() throws ClientDoesNotExist{
+    public void displayClientList() throws EmptyList{
         if (this.clientList.size()>0){
             System.out.println("* List of current clients: ");
             for(Client client: clientList){
                 System.out.println(client);
-                return;
             }
+            return;
         }
-        throw new ClientDoesNotExist("* This bank has no clients yet");
+        else
+            throw new EmptyList("This bank has no clients yet");
     }
 
     //get the client by his id --Jean
@@ -67,6 +68,7 @@ public class Bank /*implements IBank*/{
                 return client;
             }
         }
+        ///
         throw new ClientDoesNotExist("The client you researched does not exist");
     }
 

@@ -100,7 +100,7 @@ public class Account implements IAccount{
     
     @Override
     public String toString(){
-        String ans = "* " + this.getType()+"("+this.getAccountNumber()+"): "+ df.format(this.getBalance())+"$";
+        String ans = " - " + this.getType()+"("+this.getAccountNumber()+"): "+ df.format(this.getBalance())+"$";
         
         return ans;
     }
