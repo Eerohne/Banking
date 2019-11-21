@@ -83,7 +83,7 @@ public class Account implements IAccount{
     //Print all transactions - Abderrahman
     @Override
     public void displayAllTransactions() {
-        for (Transaction transaction : transactions) {
+        for (Transaction transaction : this.transactions) {
             System.out.println(transaction);
         }
     }

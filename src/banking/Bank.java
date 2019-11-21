@@ -20,20 +20,20 @@ public class Bank /*implements IBank*/{
         this.bankNumber = bankNumber;
         this.address = address;
         
-        clientList = new ArrayList<Client>();
+        this.clientList = new ArrayList<Client>();
     }
     
     
     // add a new Client --Jean
     //@Override
     public void addClient(Client newClient) {
-        clientList.add(newClient);
+        this.clientList.add(newClient);
     }
 
     //display the client's accounts --Jean
     //@Override
     public void displayClientAccounts(int clientId) throws EmptyList, ClientDoesNotExist{
-        for(Client client: clientList){
+        for(Client client: this.clientList){
             if(client.getId()==clientId){
                 System.out.println("* Listing accounts for : ");
                 System.out.println(client);
@@ -51,7 +51,7 @@ public class Bank /*implements IBank*/{
     public void displayClientList() throws EmptyList{
         if (this.clientList.size()>0){
             System.out.println("* List of current clients: ");
-            for(Client client: clientList){
+            for(Client client: this.clientList){
                 System.out.println(client);
             }
             return;
@@ -63,13 +63,13 @@ public class Bank /*implements IBank*/{
     //get the client by his id --Jean
     //@Override
     public Client getClient(int id) throws ClientDoesNotExist{
-        for(Client client: clientList){
+        for(Client client: this.clientList){
             if(client.getId()==id){
                 return client;
             }
         }
         ///
-        throw new ClientDoesNotExist("The client you researched does not exist");
+        throw new ClientDoesNotExist("This client does not exist");
     }
 
     //Add a verifier for the client id before passing to the Account checker --Abderrahman for Jean
@@ -78,12 +78,12 @@ public class Bank /*implements IBank*/{
     //@Override
     public Account getClientAccount(int clientId, int accountNumber) throws AccountNotFound, ClientDoesNotExist{
         //Abderrahman: Added error handling for null accoutn and client.
-        for(Client client: clientList){
+        for(Client client: this.clientList){
             if(client.getId()==clientId){
                 Account a = client.getAccount(accountNumber);
                 return a;
             }
         }
-        throw new ClientDoesNotExist("The client you researched does not exist");
+        throw new ClientDoesNotExist("This client does not exist");
     }
 }
