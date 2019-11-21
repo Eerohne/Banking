@@ -5,16 +5,12 @@
  */
 package banking;
 
-/*
- *
- * We shall add more estetic interfaces.
- * //Done
- */
+import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-/**
- *
- * @author cstuser
- */
 public class Banking {
     private static final String BLACK = "\u001b[0m";
     private static final String GREEN = "\u001b[32m";
@@ -22,13 +18,13 @@ public class Banking {
     private static final String BLUE = "\u001b[34m";
     private static UserInputManager uim = new UserInputManager();
     private static Bank bank = new Bank(3333333, "25 Wall st");
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws AccountNotFound, ClientDoesNotExist {
+    
+    
+    
+    public static void main(String[] args) throws AccountNotFound, ClientDoesNotExist, FileNotFoundException {
         System.out.println(BLUE + "Welcome " + RED + "to " +  GREEN + "Bank!" + BLACK);
         boolean isRunning = true;
-        
+        LoadingInputs.load();
         while(isRunning){
             int choice = uim.retrieveUserOption();
             
@@ -94,6 +90,8 @@ public class Banking {
                         UserInputManager.printError(ex.getMessage());
                     }
                     break;
+                    
+                
             }
         }
     }
