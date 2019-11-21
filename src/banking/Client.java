@@ -22,7 +22,7 @@ public class Client /*implements IClient*/{
         this.firstName = firstName;
         this.lastName = lastName;
         this.accountList = new ArrayList<Account>();
-        counter++;
+        Client.counter++;
         this.id = this.counter;
     }
     
@@ -30,14 +30,14 @@ public class Client /*implements IClient*/{
     //create new Account --Jean
     //@Override
     public void addAccount(Account newAccount) {
-        accountList.add(newAccount);
+        this.accountList.add(newAccount);
     }
 
     //print all accounts --Jean
     //@Override
     public void displayAccounts() throws EmptyList{
         if (this.accountList.size()>0){
-            for(Account account: accountList){
+            for(Account account: this.accountList){
                 System.out.println(account);
             }
             return;
@@ -48,7 +48,7 @@ public class Client /*implements IClient*/{
     //get account by accountNumber --Jean
     //@Override
     public Account getAccount(int accountNumber) throws AccountNotFound{
-        for(Account account: accountList){
+        for(Account account: this.accountList){
             if(account.getAccountNumber()==accountNumber){
                 return account;
             }
