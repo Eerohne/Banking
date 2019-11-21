@@ -69,7 +69,7 @@ public class Bank /*implements IBank*/{
             }
         }
         ///
-        throw new ClientDoesNotExist("The client you researched does not exist");
+        throw new ClientDoesNotExist("This client does not exist");
     }
 
     //Add a verifier for the client id before passing to the Account checker --Abderrahman for Jean
@@ -84,6 +84,6 @@ public class Bank /*implements IBank*/{
                 return a;
             }
         }
-        throw new ClientDoesNotExist("The client you researched does not exist");
+        throw new ClientDoesNotExist("This client does not exist");
     }
 }

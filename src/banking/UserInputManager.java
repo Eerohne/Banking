@@ -77,12 +77,18 @@ public class UserInputManager implements IUserInputManager{
 /*
 Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Account Transaction List Clients List Client Accounts
 */
-        System.out.println("********************************************************\n"
-        + "*[1] Add a new Client         [2] Create a new Account *"
-        + "\n*[3] Make a Deposit           [4] Make a Withdrawal    *"
-        + "\n*[5] List Account Transaction [6] List Clients         *"
-        + "\n*[7] List Client Accounts     [0] Exit                 *\n" 
-        + "********************************************************");
+        String option1= "[1] Add a new Client";
+        String option2= "[2] Create a new Account";
+        String option3= "[3] Make a Deposit";
+        String option4= "[4] Make a Withdrawal";
+        String option5= "[5] List Account Transaction";
+        String option6= "[6] List Clients";
+        String option7= "[7] List Client Accounts";
+        String option0 = "[0] Exit";
+
+        System.out.printf("******************************************************************%n"
+        + "*%-32s%-32s*%n*%-32s%-32s*%n*%-32s%-32s*%n*%-32s%-32s*%n*"
+        + "*****************************************************************%n", option1,option2,option3,option4,option5,option6,option7, option0);
         
         int choice = -1;
         while(true){

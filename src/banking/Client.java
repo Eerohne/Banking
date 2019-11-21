@@ -39,8 +39,8 @@ public class Client /*implements IClient*/{
         if (this.accountList.size()>0){
             for(Account account: accountList){
                 System.out.println(account);
-                return;
             }
+            return;
         }
         throw new EmptyList("The account list is empty");
     }
