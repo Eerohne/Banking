@@ -20,14 +20,30 @@ public  class LoadingInputs {
 
     
     public static void load() throws FileNotFoundException{
+       
         Scanner scan = new Scanner(f);
         while(scan.hasNextLine()){
             command.add(scan.next());
         }
         
-        for(String s : command)
+        for(int i = 0; i < command.size(); i++)
+        {
+            if( command.get(i) == "c")
+            {
+                String lastName, firstName;
+                i++;
+                firstName = command.get(i);
+                i++;
+                lastName = command.get(i);
+                
+                Client c = new Client(firstName, lastName);
+                
+            }
+        }
+        
+        /*for(String s : command)
         {
             System.out.println(s);
-        }
+        */}
     }
-}
+
