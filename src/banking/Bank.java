@@ -86,4 +86,9 @@ public class Bank /*implements IBank*/{
         }
         throw new ClientDoesNotExist("This client does not exist");
     }
+    
+    public ArrayList<Client> getClientList ()
+    {
+        return this.clientList;
+    }
 }

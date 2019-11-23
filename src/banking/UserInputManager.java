@@ -69,6 +69,12 @@ public class UserInputManager implements IUserInputManager{
         double amount = askInput("> Input transaction ammount : ");
         return amount;
     }
+    
+    public String retrieveFileName() {
+        System.out.print("> Input File Name : ");
+        String name = scan.next();
+        return name;
+    }
 
 //Remove checker -- Abderrahman for Merouane   
     //Done -- Merouane
@@ -84,16 +90,18 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
         String option5= "[5] List Account Transaction";
         String option6= "[6] List Clients";
         String option7= "[7] List Client Accounts";
+        String option8= "[8] Load Bank";
+        String option9= "[9] Save Bank";
         String option0 = "[0] Exit";
 
         System.out.printf("******************************************************************%n"
-        + "*%-32s%-32s*%n*%-32s%-32s*%n*%-32s%-32s*%n*%-32s%-32s*%n*"
-        + "*****************************************************************%n", option1,option2,option3,option4,option5,option6,option7, option0);
+        + "*%-32s%-32s*%n*%-32s%-32s*%n*%-32s%-32s*%n*%-32s%-32s*%n*%-32s%-32s*%n"
+        + "******************************************************************%n", option1,option2,option3,option4,option5,option6,option7, option8, option9, option0);
         
         int choice = -1;
         while(true){
             choice = (int)askInput("> Choose an option : ");
-            if((choice > -1 && choice < 8))
+            if((choice >= 0 && choice <= 9))
                 return choice;
             else
                 printError("* Please enter a correct input");

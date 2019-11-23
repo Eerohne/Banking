@@ -1,3 +1,1 @@
-a a
-b
-c
+c a a 1 ch 1 w 200

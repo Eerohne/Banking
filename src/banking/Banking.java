@@ -24,7 +24,7 @@ public class Banking {
     public static void main(String[] args) throws AccountNotFound, ClientDoesNotExist, FileNotFoundException {
         System.out.println(BLUE + "Welcome " + RED + "to " +  GREEN + "Bank!" + BLACK);
         boolean isRunning = true;
-        LoadingInputs.load();
+        
         while(isRunning){
             int choice = uim.retrieveUserOption();
             
@@ -90,7 +90,13 @@ public class Banking {
                         UserInputManager.printError(ex.getMessage());
                     }
                     break;
-                    
+                case 8:
+                    bank = new Bank(3333333, "25 Wall st");
+                    LoadingInputs.load(bank, uim.retrieveFileName());
+                    break;
+                case 9:
+                    LoadingInputs.save(bank, uim.retrieveFileName());
+                    break;
                 
             }
         }
