@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,14 +26,14 @@ import java.util.Scanner;
 public  class LoadingInputs {
       
     private static ArrayList <String> command = new ArrayList<String>();
-    private static Object data;
-    
+    private static DecimalFormat df = new DecimalFormat("#0.00");        
 
     
     public static void load(Bank bank, String name) throws FileNotFoundException{
         
-       File f = new File("./src/banking/"+ name + ".txt"); 
+        File f = new File("./src/banking/"+ name + ".txt"); 
         Scanner scan = new Scanner(f);
+        command.clear();
         while(scan.hasNextLine()){
             command.add(scan.next());
         }
@@ -53,7 +54,7 @@ public  class LoadingInputs {
                 Client c = new Client(firstName, lastName);
                 
                 i++;
-                float accountNumber = Float.parseFloat(command.get(i));
+                double accountNumber = Double.parseDouble(command.get(i));
                 if(accountNumber > 0)
                 {
                     for(int j = 0; j< accountNumber; j++)
@@ -70,7 +71,7 @@ public  class LoadingInputs {
                         }
                         
                         i++;
-                        float transactionNumber = Float.parseFloat(command.get(i));
+                        double transactionNumber = Double.parseDouble(command.get(i));
                         if(transactionNumber > 0)
                         {
                             for(int k = 0; k < transactionNumber; k++)
@@ -79,13 +80,13 @@ public  class LoadingInputs {
                                  if(command.get(i).equals("w"))
                                  {
                                      i++;
-                                     a.withdrawal(Float.parseFloat(command.get(i)));
+                                     a.withdrawal(Double.parseDouble(command.get(i)));
                                  }
                                  else
                                  if(command.get(i).equals("d"))
                                  {
                                     i++;
-                                    a.deposit(Float.parseFloat(command.get(i))); 
+                                    a.deposit(Double.parseDouble(command.get(i))); 
                                  }
                             }
                         }
@@ -95,15 +96,9 @@ public  class LoadingInputs {
                 bank.addClient(c);
             }
         }
-      /* 
-        for(String s : command)
-        {
-            System.out.println(s);
-        }
-      */
     }
     
-     public static void save(Bank bank, String name) throws FileNotFoundException {
+     public static void save(Bank bank, String name) throws FileNotFoundException, IOException {
          String data = "";
          for(Client c : bank.getClientList())
          {
@@ -132,37 +127,17 @@ public  class LoadingInputs {
                      {
                          data += "w ";
                      }
-                    data += t.getAmount() + " ";
+                    data += df.format(t.getAmount()) + " ";
                  }
              }
          }
          
           data = data.substring(0, data.length() - 1);
          
-          OutputStream os = null;
-        try {
-            String path = "./src/banking/"+ name + ".txt";
-            //clearThefile(path);
-            os = new FileOutputStream(new File(path));
-            os.write(data.getBytes(), 0, data.length());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally{
-            try {
-                os.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        File path = new File("./src/banking/"+ name + ".txt");
+        PrintWriter pw = new PrintWriter(path);
+        pw.print(data);
+        pw.close();
      }
-     
-     
-     public static void clearTheFile(String path) throws IOException {
-        FileWriter fwOb = new FileWriter(path, false); 
-        PrintWriter pwOb = new PrintWriter(fwOb, false);
-        pwOb.flush();
-        pwOb.close();
-        fwOb.close();
-    }
 }
 

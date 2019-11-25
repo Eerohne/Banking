@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Banking {
@@ -91,11 +92,10 @@ public class Banking {
                     }
                     break;
                 case 8:
-                    bank = new Bank(3333333, "25 Wall st");
-                    LoadingInputs.load(bank, uim.retrieveFileName());
+                    saveOrLoad(false);
                     break;
                 case 9:
-                    LoadingInputs.save(bank, uim.retrieveFileName());
+                    saveOrLoad(true);
                     break;
                 
             }
@@ -115,6 +115,19 @@ public class Banking {
             UserInputManager.printError(c.getMessage());
         } catch(AccountNotFound a){
             UserInputManager.printError(a.getMessage());                        
+        }
+    }
+    
+    private static void saveOrLoad(boolean save){
+        try{
+            if(save)
+                LoadingInputs.save(bank, uim.retrieveFileName());
+            else
+                LoadingInputs.load(bank, uim.retrieveFileName());
+        } catch(FileNotFoundException fnfe){
+            UserInputManager.printError(fnfe.getMessage());
+        } catch(IOException ioe){
+            UserInputManager.printError(ioe.getMessage());
         }
     }
 }
