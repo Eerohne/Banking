@@ -15,6 +15,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.text.DecimalFormat;
+
+
 /**
  *
  * @author cstuser
@@ -23,6 +26,7 @@ public  class LoadingInputs {
       
     private static ArrayList <String> command = new ArrayList<String>();
     private static Object data;
+    private static DecimalFormat df = new DecimalFormat("#,###,##0.00");  
 
     
     public static void load(Bank bank, String name) throws FileNotFoundException{
@@ -133,7 +137,7 @@ public  class LoadingInputs {
              }
          }
          
-         
+          data = data.substring(0, data.length() - 1);
          
           OutputStream os = null;
         try {
