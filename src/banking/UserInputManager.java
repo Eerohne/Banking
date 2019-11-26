@@ -5,10 +5,21 @@
  */
 package banking;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 //Merouane Issad : The whole class
 public class UserInputManager implements IUserInputManager{
+
 
     Scanner scan = new Scanner(System.in);
     
@@ -124,5 +135,24 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
         }
         scan.nextLine();
         return number;
+    }
+    
+//    static NodeList xmlNode(String bank) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+    public static NodeList xmlNode(String tagName) throws UnsupportedEncodingException, SAXException, ParserConfigurationException, IOException{
+        File saveFile = new File("save.xml");
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        StringBuilder xmlStringBuilder = new StringBuilder();
+        //xmlStringBuilder.append("<?xml version=\"1.0\"?>");
+        ByteArrayInputStream input = new ByteArrayInputStream(
+                    xmlStringBuilder.toString().getBytes("UTF-8"));
+        Document doc = builder.parse(saveFile);
+        doc.getDocumentElement().normalize();
+        NodeList nodeList = doc.getElementsByTagName(tagName);
+
+        
+        return nodeList;
     }
 }

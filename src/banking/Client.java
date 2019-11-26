@@ -5,7 +5,13 @@
  */
 package banking;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
+
+
 
 /**
  *
@@ -116,6 +122,37 @@ public class Client /*implements IClient*/{
                   data += a.save();
              }
               
-             return data;
+        return data;
+    }
+    
+    public String toXML(){
+        String xml = "\t<Client>\n";
+        xml += "\t\t<id>" + this.id + "</id>\n";
+        xml += "\t\t<firstName>" + this.id + "</firstName>\n";
+        xml += "\t\t<lastName>" + this.id + "</lastName>\n";
+        for(Account a: accountList)
+        {
+            xml += a.toXML();
+        }
+        xml += "\t</Client>\n";
+        return xml;
+    }
+    
+    public static Client fromXML(int id) throws SAXException, ParserConfigurationException, IOException, ClientDoesNotExist{
+        NodeList cList = UserInputManager.xmlNode("Client");
+        Node node = cList.item(id);
+            
+        if(node.getNodeType() == Node.ELEMENT_NODE){
+            Element clientElement = (Element) node;
+
+            String firstName = clientElement.getElementsByTagName("firstName").item(0).getTextContent();
+            String lastName = clientElement.getElementsByTagName("lastName").item(0).getTextContent();
+            
+            //ADD ACCOUNTLIST READER
+            
+            return new Client(firstName, lastName);
+        }
+        
+        throw new ClientDoesNotExist("The client you try to load does not exist");
     }
 }

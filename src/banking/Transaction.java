@@ -11,14 +11,14 @@ import java.text.DecimalFormat;
 
 public class Transaction implements ITransaction{
     private String type;
-    private double amount;
+    private double ammount;
     
     private static DecimalFormat df = new DecimalFormat("#0.00"); 
     
     
     public Transaction(String type, double amount) {
         this.type = type;
-        this.amount = amount;
+        this.ammount = amount;
     }
 
     public String getType() {
@@ -30,15 +30,25 @@ public class Transaction implements ITransaction{
     }
 
     public double getAmount() {
-        return this.amount;
+        return this.ammount;
     }
 
     public void setAmount(double amount) {
-        this.amount = amount;
+        this.ammount = amount;
     }
     
     public String toString(){
-        return "* " + this.type + " of " + this.amount + "$";
+        return "* " + this.type + " of " + this.ammount + "$";
+    }
+    
+    public String toXML(){
+        String xml = "";
+        
+        xml += "\t\t\t<Transaction>\n";
+        xml += "\t\t\t\t<type>" + this.type + "</type>\n";
+        xml += "\t\t\t\t<ammount>" + this.ammount + "</ammount>\n";
+        xml += "\t\t\t</Transaction>\n";
+        return xml;
     }
     
     public String save ()
@@ -52,7 +62,7 @@ public class Transaction implements ITransaction{
                      {
                          data += "w ";
                      }
-        data += df.format(this.amount) + " ";
+        data += df.format(this.ammount) + " ";
         return data;
     }
 }

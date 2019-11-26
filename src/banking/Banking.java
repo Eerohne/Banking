@@ -5,12 +5,8 @@
  */
 package banking;
 
-import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Banking {
     private static final String BLACK = "\u001b[0m";
@@ -95,7 +91,8 @@ public class Banking {
                     saveOrLoad(false);
                     break;
                 case 9:
-                    saveOrLoad(true);
+                    //saveOrLoad(true);
+                    XMLReaderWriter.saveToXML(bank);
                     break;
                 
             }

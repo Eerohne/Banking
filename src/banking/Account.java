@@ -64,6 +64,15 @@ public class Account implements IAccount{
     public void setOwner(String owner) {
         this.owner = owner;
     }
+
+    public static int getCounter() {
+        return counter;
+    }
+
+    public static void setCounter(int counter) {
+        Account.counter = counter;
+    }
+    
     
     //Getter to get the transaction list - Abderrahman
     @Override
@@ -121,5 +130,21 @@ public class Account implements IAccount{
         String ans = " - " + this.getType()+"("+this.getAccountNumber()+"): "+ df.format(this.getBalance())+"$";
         
         return ans;
+    }
+    
+    public String toXML(){
+        String xml = "";
+        
+        xml += "\t\t<Account>\n";
+        xml += "\t\t\t<accountNumber>" + this.accountNumber + "</accountNumber>\n";
+        xml += "\t\t\t<balance>" + this.balance + "</balance>\n";
+        xml += "\t\t\t<type>" + this.type + "</type>\n";
+        xml += "\t\t\t<owner>" + this.owner + "</owner>\n";
+        for (Transaction transaction : transactions) {
+            xml += transaction.toXML();
+        }
+        xml += "\t\t</Account>\n";
+        
+        return xml;
     }
 }

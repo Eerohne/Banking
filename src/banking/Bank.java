@@ -6,6 +6,10 @@
 package banking;
 
 import java.util.ArrayList;
+import org.w3c.dom.*;
+import javax.xml.parsers.*;
+import java.io.*;
+import org.xml.sax.*;
 
 /**
  *
@@ -22,7 +26,6 @@ public class Bank /*implements IBank*/{
         
         this.clientList = new ArrayList<Client>();
     }
-    
     
     // add a new Client --Jean
     //@Override
@@ -90,5 +93,44 @@ public class Bank /*implements IBank*/{
     public ArrayList<Client> getClientList ()
     {
         return this.clientList;
+    }
+    
+    public String toXML(){
+        String xml = "";
+        
+        xml += "<Bank>\n";
+        xml += "\t<bankNumber>" + this.bankNumber + "</bankNumber>\n";
+        xml += "\t<address>" + this.address + "</address>\n";
+        for (Client client : clientList) {
+            xml += client.toXML();
+        }
+        xml += "\t<clientCounter>" + Client.getCounter() + "</clientCounter>\n";
+        xml += "\t<accountCounter>" + Account.getCounter() + "</accountCounter>\n";
+        xml += "</Bank>";
+        
+        return xml;
+    }
+    
+    public void fromXML() throws SAXException, ParserConfigurationException, IOException, ClientDoesNotExist{
+        NodeList bList = UserInputManager.xmlNode("Bank");
+        
+        for (int i = 0; i < bList.getLength(); i++) {
+            Node node = bList.item(i);
+            
+            if(node.getNodeType() == Node.ELEMENT_NODE){
+                Element bankElement = (Element) node;
+                
+                this.bankNumber = Integer.parseInt(bankElement.getElementsByTagName("bankNumber").item(0).getTextContent());
+                this.address = bankElement.getElementsByTagName("address").item(0).getTextContent();
+                
+                int clientCounter = Integer.parseInt(bankElement.getElementsByTagName("clientCounter").item(0).getTextContent());
+                
+                for (int cID = 0; cID < clientCounter; cID++) {
+                    this.clientList.add(Client.fromXML(cID));
+                }
+                
+                Client.setCounter(clientCounter);
+            }
+        }
     }
 }
