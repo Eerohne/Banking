@@ -20,7 +20,7 @@ import java.util.Scanner;
 public  class LoadingInputs {
       
     private static ArrayList <String> command = new ArrayList<String>();
-    private static DecimalFormat df = new DecimalFormat("#0.00");        
+           
 
     
     public static void load(Bank bank, String name) throws FileNotFoundException{
@@ -28,7 +28,7 @@ public  class LoadingInputs {
         File f = new File("./src/banking/"+ name + ".txt"); 
         Scanner scan = new Scanner(f);
         command.clear();
-        while(scan.hasNextLine()){
+        while(scan.hasNext()){
             command.add(scan.next());
         }
         
@@ -96,34 +96,7 @@ public  class LoadingInputs {
          String data = "";
          for(Client c : bank.getClientList())
          {
-             data += "c ";
-             data += c.getFirstName() + " ";
-             data += c.getLastName() + " ";
-             data += c.getAccountList().size() + " ";
-             
-             for(Account a : c.getAccountList())
-             {
-                  if(a.getType().equals("checking"))
-                  {
-                      data += "ch ";
-                  }else
-                  {
-                      data += "s ";
-                  }
-                    data += a.getTransactions().size() + " ";
-                    
-                 for(Transaction t : a.getTransactions())
-                 {
-                    if(t.getType().equals("Deposit"))
-                     {
-                         data += "d ";
-                     }else  if(t.getType().equals("Withdrawal"))
-                     {
-                         data += "w ";
-                     }
-                    data += df.format(t.getAmount()) + " ";
-                 }
-             }
+            data += c.save();
          }
          
           data = data.substring(0, data.length() - 1);

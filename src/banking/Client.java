@@ -103,4 +103,19 @@ public class Client /*implements IClient*/{
         Client.counter = counter;
     }
     
+    public String save()
+    {
+        String data = "";
+         data += "c ";
+             data += this.firstName + " ";
+             data += this.lastName + " ";
+             data += this.accountList.size() + " ";
+             
+             for(Account a : accountList)
+             {
+                  data += a.save();
+             }
+              
+             return data;
+    }
 }

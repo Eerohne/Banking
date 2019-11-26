@@ -97,6 +97,24 @@ public class Account implements IAccount{
         return this.balance;
     }
     
+    public String save()
+    {
+        String data = "";
+        if(this.type.equals("checking"))
+                  {
+                      data += "ch ";
+                  }else
+                  {
+                      data += "s ";
+                  }
+                    data += transactions.size() + " ";
+                    
+                 for(Transaction t : transactions)
+                 {
+                    data += t.save();
+                 }
+        return data;
+    }
     
     @Override
     public String toString(){

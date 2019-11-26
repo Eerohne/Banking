@@ -6,9 +6,14 @@
 package banking;
 
 //Merouane Issad
+
+import java.text.DecimalFormat;
+
 public class Transaction implements ITransaction{
     private String type;
     private double amount;
+    
+    private static DecimalFormat df = new DecimalFormat("#0.00"); 
     
     
     public Transaction(String type, double amount) {
@@ -34,5 +39,20 @@ public class Transaction implements ITransaction{
     
     public String toString(){
         return "* " + this.type + " of " + this.amount + "$";
+    }
+    
+    public String save ()
+    {
+        String data = "";
+        
+        if(this.type.equals("Deposit"))
+                     {
+                         data += "d ";
+                     }else  if(this.type.equals("Withdrawal"))
+                     {
+                         data += "w ";
+                     }
+        data += df.format(this.amount) + " ";
+        return data;
     }
 }
