@@ -98,14 +98,14 @@ public class Bank /*implements IBank*/{
     public String toXML(){
         String xml = "";
         
-        xml += "<Bank>\n";
-        xml += "\t<bankNumber>" + this.bankNumber + "</bankNumber>\n";
-        xml += "\t<address>" + this.address + "</address>\n";
+        xml += "<Bank>";
+        xml += "<bankNumber>" + this.bankNumber + "</bankNumber>";
+        xml += "<address>" + this.address + "</address>";
         for (Client client : clientList) {
             xml += client.toXML();
         }
-        xml += "\t<clientCounter>" + Client.getCounter() + "</clientCounter>\n";
-        xml += "\t<accountCounter>" + Account.getCounter() + "</accountCounter>\n";
+        xml += "<clientCounter>" + Client.getCounter() + "</clientCounter>";
+        xml += "<accountCounter>" + Account.getCounter() + "</accountCounter>";
         xml += "</Bank>";
         
         return xml;

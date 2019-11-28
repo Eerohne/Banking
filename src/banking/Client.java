@@ -129,15 +129,15 @@ public class Client /*implements IClient*/{
     }
     
     public String toXML(){
-        String xml = "\t<Client>\n";
-        xml += "\t\t<id>" + this.id + "</id>\n";
-        xml += "\t\t<firstName>" + this.id + "</firstName>\n";
-        xml += "\t\t<lastName>" + this.id + "</lastName>\n";
+        String xml = "<Client>";
+        xml += "<id>" + this.id + "</id>";
+        xml += "<firstName>" + this.firstName + "</firstName>";
+        xml += "<lastName>" + this.lastName + "</lastName>";
         for(Account a: accountList)
         {
             xml += a.toXML();
         }
-        xml += "\t</Client>\n";
+        xml += "</Client>";
         return xml;
     }
     

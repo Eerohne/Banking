@@ -93,13 +93,13 @@ public  class LoadingInputs {
     }
     
      public static void save(Bank bank, String name) throws FileNotFoundException, IOException {
-         String data = "";
-         for(Client c : bank.getClientList())
-         {
+        String data = "";
+        for(Client c : bank.getClientList())
+        {
             data += c.save();
-         }
+        }
          
-          data = data.substring(0, data.length() - 1);
+        data = data.substring(0, data.length() - 1);
          
         File path = new File("./src/banking/"+ name + ".txt");
         PrintWriter pw = new PrintWriter(path);

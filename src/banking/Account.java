@@ -146,15 +146,15 @@ public class Account implements IAccount{
     public String toXML(){
         String xml = "";
         
-        xml += "\t\t<Account>\n";
-        xml += "\t\t\t<accountNumber>" + this.accountNumber + "</accountNumber>\n";
-        xml += "\t\t\t<balance>" + this.balance + "</balance>\n";
-        xml += "\t\t\t<type>" + this.type + "</type>\n";
-        xml += "\t\t\t<owner>" + this.owner + "</owner>\n";
+        xml += "<Account>";
+        xml += "<accountNumber>" + this.accountNumber + "</accountNumber>";
+        xml += "<balance>" + this.balance + "</balance>";
+        xml += "<type>" + this.type + "</type>";
+        xml += "<owner>" + this.owner + "</owner>";
         for (Transaction transaction : transactions) {
             xml += transaction.toXML();
         }
-        xml += "\t\t</Account>\n";
+        xml += "</Account>";
         
         return xml;
     }

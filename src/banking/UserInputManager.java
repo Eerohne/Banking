@@ -137,9 +137,6 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
         return number;
     }
     
-//    static NodeList xmlNode(String bank) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     public static NodeList xmlNode(String tagName) throws UnsupportedEncodingException, SAXException, ParserConfigurationException, IOException{
         File saveFile = XMLReaderWriter.getFile();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

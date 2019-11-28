@@ -63,10 +63,10 @@ public class Transaction implements ITransaction{
     public String toXML(){
         String xml = "";
         
-        xml += "\t\t\t<Transaction>\n";
-        xml += "\t\t\t\t<type>" + this.type + "</type>\n";
-        xml += "\t\t\t\t<ammount>" + this.ammount + "</ammount>\n";
-        xml += "\t\t\t</Transaction>\n";
+        xml += "<Transaction>";
+        xml += "<type>" + this.type + "</type>";
+        xml += "<ammount>" + this.ammount + "</ammount>";
+        xml += "</Transaction>";
         return xml;
     }
     

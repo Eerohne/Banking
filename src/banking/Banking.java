@@ -92,12 +92,10 @@ public class Banking {
                 case 8:
                     //saveOrLoad(false);
                     XMLReaderWriter.loadXML(bank);
-                    UserInputManager.printError("Successful load!");
                     break;
                 case 9:
                     //saveOrLoad(true);
                     XMLReaderWriter.saveToXML(bank);
-                    UserInputManager.printError("Successful save!");
                     break;
                 
             }
