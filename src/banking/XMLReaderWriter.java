@@ -16,17 +16,13 @@ import org.xml.sax.SAXException;
  * @author cstuser
  */
 public class XMLReaderWriter {
-    private static final UserInputManager UIM = new UserInputManager();
-    private static final String PATH = "./src/banking/";
-    private static File file;
+    private static File file = new File("./src/banking/save.xml");;
     
     public static void saveToXML(Bank b) throws FileNotFoundException{
         try {
-            file = new File("./src/banking/" + UIM.retrieveFileName() + ".xml");
             PrintWriter pw = new PrintWriter(file);
             pw.print(b.toXML());
             pw.close();
-            UserInputManager.printError("Successfil save!");
         } catch (Exception e) {
             UserInputManager.printError(e.getMessage());
         }
@@ -35,9 +31,7 @@ public class XMLReaderWriter {
     public static void loadXML(Bank b) throws ParserConfigurationException, IOException, SAXException{
         try {
             b.getClientList().clear();
-            file = new File(PATH + UIM.retrieveFileName() + ".xml");
             b.fromXML();   
-            UserInputManager.printError("Successfil load!");
         } catch (FileNotFoundException e) {
             UserInputManager.printError(e.getMessage());
         }
