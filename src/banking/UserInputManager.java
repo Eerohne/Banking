@@ -141,7 +141,7 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
     public static NodeList xmlNode(String tagName) throws UnsupportedEncodingException, SAXException, ParserConfigurationException, IOException{
-        File saveFile = new File("save.xml");
+        File saveFile = XMLReaderWriter.getFile();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         StringBuilder xmlStringBuilder = new StringBuilder();
@@ -151,7 +151,7 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
         Document doc = builder.parse(saveFile);
         doc.getDocumentElement().normalize();
         NodeList nodeList = doc.getElementsByTagName(tagName);
-
+        
         
         return nodeList;
     }

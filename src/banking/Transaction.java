@@ -8,13 +8,17 @@ package banking;
 //Merouane Issad
 
 import java.text.DecimalFormat;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 public class Transaction implements ITransaction{
     private String type;
     private double ammount;
     
-    private static DecimalFormat df = new DecimalFormat("#0.00"); 
-    
+    private static DecimalFormat df = new DecimalFormat("#,###,###0.00"); 
+
+    public Transaction() {
+    }
     
     public Transaction(String type, double amount) {
         this.type = type;
@@ -38,17 +42,7 @@ public class Transaction implements ITransaction{
     }
     
     public String toString(){
-        return "* " + this.type + " of " + this.ammount + "$";
-    }
-    
-    public String toXML(){
-        String xml = "";
-        
-        xml += "\t\t\t<Transaction>\n";
-        xml += "\t\t\t\t<type>" + this.type + "</type>\n";
-        xml += "\t\t\t\t<ammount>" + this.ammount + "</ammount>\n";
-        xml += "\t\t\t</Transaction>\n";
-        return xml;
+        return "* " + this.type + " of " + df.format(this.ammount) + "$";
     }
     
     public String save ()
@@ -64,5 +58,21 @@ public class Transaction implements ITransaction{
                      }
         data += df.format(this.ammount) + " ";
         return data;
+    }
+    
+    public String toXML(){
+        String xml = "";
+        
+        xml += "\t\t\t<Transaction>\n";
+        xml += "\t\t\t\t<type>" + this.type + "</type>\n";
+        xml += "\t\t\t\t<ammount>" + this.ammount + "</ammount>\n";
+        xml += "\t\t\t</Transaction>\n";
+        return xml;
+    }
+    
+    public void fromXML(Node n){
+        Element e = (Element) n;
+        this.type = e.getElementsByTagName("type").item(0).getTextContent();
+        this.ammount = Double.parseDouble(e.getElementsByTagName("ammount").item(0).getTextContent());
     }
 }

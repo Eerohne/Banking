@@ -9,7 +9,7 @@
 			<accountNumber>1</accountNumber>
 			<balance>179.77435799999998</balance>
 			<type>checking</type>
-			<owner>null</owner>
+			<owner>J Z</owner>
 			<Transaction>
 				<type>Deposit</type>
 				<ammount>200.45</ammount>

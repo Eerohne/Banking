@@ -7,6 +7,8 @@ package banking;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 public class Banking {
     private static final String BLACK = "\u001b[0m";
@@ -18,7 +20,7 @@ public class Banking {
     
     
     
-    public static void main(String[] args) throws AccountNotFound, ClientDoesNotExist, FileNotFoundException {
+    public static void main(String[] args) throws AccountNotFound, ClientDoesNotExist, FileNotFoundException, ParserConfigurationException, IOException, SAXException {
         System.out.println(BLUE + "Welcome " + RED + "to " +  GREEN + "Bank!" + BLACK);
         boolean isRunning = true;
         
@@ -88,11 +90,14 @@ public class Banking {
                     }
                     break;
                 case 8:
-                    saveOrLoad(false);
+                    //saveOrLoad(false);
+                    XMLReaderWriter.loadXML(bank);
+                    UserInputManager.printError("Successful load!");
                     break;
                 case 9:
                     //saveOrLoad(true);
                     XMLReaderWriter.saveToXML(bank);
+                    UserInputManager.printError("Successful save!");
                     break;
                 
             }

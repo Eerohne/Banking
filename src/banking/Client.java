@@ -21,13 +21,16 @@ public class Client /*implements IClient*/{
     private int id;
     private String firstName;
     private String lastName;
-    private ArrayList<Account> accountList;
+    private ArrayList<Account> accountList = new ArrayList<Account>();
     private static int counter = 0;
 
+    public Client() {
+        ++counter;
+    }
+    
     public Client(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.accountList = new ArrayList<Account>();
         Client.counter++;
         this.id = this.counter;
     }
@@ -138,21 +141,24 @@ public class Client /*implements IClient*/{
         return xml;
     }
     
-    public static Client fromXML(int id) throws SAXException, ParserConfigurationException, IOException, ClientDoesNotExist{
-        NodeList cList = UserInputManager.xmlNode("Client");
-        Node node = cList.item(id);
+    public void fromXML(Node clientNode) throws SAXException, ParserConfigurationException, IOException{
+            Element clientElement = (Element) clientNode;
             
-        if(node.getNodeType() == Node.ELEMENT_NODE){
-            Element clientElement = (Element) node;
-
-            String firstName = clientElement.getElementsByTagName("firstName").item(0).getTextContent();
-            String lastName = clientElement.getElementsByTagName("lastName").item(0).getTextContent();
+            this.id = Integer.parseInt(clientElement.getElementsByTagName("id").item(0).getTextContent());
+            this.firstName = clientElement.getElementsByTagName("firstName").item(0).getTextContent();
+            this.lastName = clientElement.getElementsByTagName("lastName").item(0).getTextContent(); 
             
-            //ADD ACCOUNTLIST READER
-            
-            return new Client(firstName, lastName);
-        }
-        
-        throw new ClientDoesNotExist("The client you try to load does not exist");
+            NodeList aList = clientNode.getChildNodes();
+            for (int i = 0; i < aList.getLength(); i++) {
+                Node accountNode = aList.item(i);
+                
+                if(accountNode.getNodeType() == Node.ELEMENT_NODE && accountNode.getNodeName().equals("Account")){
+                    Element accountElement = (Element) accountNode;
+                    
+                    Account a = new Account();
+                    a.fromXML(accountNode);
+                    this.accountList.add(a);
+                }
+            }
     }
 }

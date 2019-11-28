@@ -5,8 +5,14 @@
  */
 package banking;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -23,9 +29,14 @@ public class Account implements IAccount{
     protected String type;
     protected String owner;
     private static int counter;
-    private static DecimalFormat df = new DecimalFormat("#,###,##0.00");    
+    private static DecimalFormat df = new DecimalFormat("##0.00");    
     
     //Constructors - Abderrahman
+
+    public Account() {
+        ++counter;
+    }
+    
     public Account(String type){
         this.type = type;
         counter++;
@@ -146,5 +157,27 @@ public class Account implements IAccount{
         xml += "\t\t</Account>\n";
         
         return xml;
+    }
+    
+    public void fromXML(Node n) throws SAXException, ParserConfigurationException, IOException{
+        Element e = (Element) n;
+        
+        this.accountNumber = Integer.parseInt(e.getElementsByTagName("accountNumber").item(0).getTextContent());
+        this.balance = Double.parseDouble(e.getElementsByTagName("balance").item(0).getTextContent());
+        this.owner = e.getElementsByTagName("owner").item(0).getTextContent();
+        this.type = e.getElementsByTagName("type").item(0).getTextContent();
+        
+        NodeList tList = n.getChildNodes();
+            for (int i = 0; i < tList.getLength(); i++) {
+                Node transactionNode = tList.item(i);
+                
+                if(transactionNode.getNodeType() == Node.ELEMENT_NODE && transactionNode.getNodeName().equals("Transaction")){
+                    Element transactionElement = (Element) transactionNode;
+                    
+                    Transaction t = new Transaction();
+                    t.fromXML(transactionNode);
+                    this.transactions.add(t);
+                }
+            }
     }
 }

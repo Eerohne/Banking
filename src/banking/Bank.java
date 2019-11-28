@@ -111,25 +111,27 @@ public class Bank /*implements IBank*/{
         return xml;
     }
     
-    public void fromXML() throws SAXException, ParserConfigurationException, IOException, ClientDoesNotExist{
+    public void fromXML() throws SAXException, ParserConfigurationException, IOException{
         NodeList bList = UserInputManager.xmlNode("Bank");
         
         for (int i = 0; i < bList.getLength(); i++) {
-            Node node = bList.item(i);
+            Node bankNode = bList.item(i);
             
-            if(node.getNodeType() == Node.ELEMENT_NODE){
-                Element bankElement = (Element) node;
+            if(bankNode.getNodeType() == Node.ELEMENT_NODE){
+                Element bankElement = (Element) bankNode;
                 
                 this.bankNumber = Integer.parseInt(bankElement.getElementsByTagName("bankNumber").item(0).getTextContent());
                 this.address = bankElement.getElementsByTagName("address").item(0).getTextContent();
-                
-                int clientCounter = Integer.parseInt(bankElement.getElementsByTagName("clientCounter").item(0).getTextContent());
-                
-                for (int cID = 0; cID < clientCounter; cID++) {
-                    this.clientList.add(Client.fromXML(cID));
+                            
+                NodeList cList = bankNode.getChildNodes();
+                for (int cID = 0; cID < cList.getLength(); cID++) {
+                    Node cNode = cList.item(cID);
+                    if(cNode.getNodeType() == Node.ELEMENT_NODE && cNode.getNodeName().equals("Client")){
+                        Client c = new Client();
+                        c.fromXML(cNode);
+                        this.addClient(c);
+                    }
                 }
-                
-                Client.setCounter(clientCounter);
             }
         }
     }
