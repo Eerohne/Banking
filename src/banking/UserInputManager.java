@@ -66,9 +66,9 @@ public class UserInputManager implements IUserInputManager{
     @Override
     public Client retrieveClientInfo() {
        System.out.print("> Input client first name : ");
-       String firstName = scan.next();
+       String firstName = scan.nextLine();
        System.out.print("> Input client last name : ");
-       String lastName = scan.next();
+       String lastName = scan.nextLine();
        
        Client client = new Client(firstName, lastName);
        return client;
@@ -81,6 +81,7 @@ public class UserInputManager implements IUserInputManager{
         return amount;
     }
     
+    //Retrieve file name
     public String retrieveFileName() {
         System.out.print("> Input File Name : ");
         String name = scan.next();
@@ -135,21 +136,5 @@ Add a new Client  Create a new Account Make a Deposit Make a Withdrawal List Acc
         }
         scan.nextLine();
         return number;
-    }
-    
-    public static NodeList xmlNode(String tagName) throws UnsupportedEncodingException, SAXException, ParserConfigurationException, IOException{
-        File saveFile = XMLReaderWriter.getFile();
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        StringBuilder xmlStringBuilder = new StringBuilder();
-        //xmlStringBuilder.append("<?xml version=\"1.0\"?>");
-        ByteArrayInputStream input = new ByteArrayInputStream(
-                    xmlStringBuilder.toString().getBytes("UTF-8"));
-        Document doc = builder.parse(saveFile);
-        doc.getDocumentElement().normalize();
-        NodeList nodeList = doc.getElementsByTagName(tagName);
-        
-        
-        return nodeList;
     }
 }

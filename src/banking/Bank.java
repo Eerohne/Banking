@@ -111,8 +111,9 @@ public class Bank /*implements IBank*/{
         return xml;
     }
     
-    public void fromXML() throws SAXException, ParserConfigurationException, IOException{
-        NodeList bList = UserInputManager.xmlNode("Bank");
+    public void fromXML(String fileName) throws SAXException, ParserConfigurationException, IOException{
+        XMLReaderWriter xmlrw = new XMLReaderWriter();
+        NodeList bList = xmlrw.xmlNode("Bank", fileName);
         
         for (int i = 0; i < bList.getLength(); i++) {
             Node bankNode = bList.item(i);

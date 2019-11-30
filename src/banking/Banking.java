@@ -16,6 +16,7 @@ public class Banking {
     private static final String RED = "\u001b[31m";
     private static final String BLUE = "\u001b[34m";
     private static UserInputManager uim = new UserInputManager();
+    private static XMLReaderWriter xmlrw = new XMLReaderWriter();
     private static Bank bank = new Bank(3333333, "25 Wall st");
     
     
@@ -23,12 +24,14 @@ public class Banking {
     public static void main(String[] args) throws AccountNotFound, ClientDoesNotExist, FileNotFoundException, ParserConfigurationException, IOException, SAXException {
         System.out.println(BLUE + "Welcome " + RED + "to " +  GREEN + "Bank!" + BLACK);
         boolean isRunning = true;
+        xmlrw.loadXML(bank, "save");
         
         while(isRunning){
             int choice = uim.retrieveUserOption();
             
             switch(choice){
                 case 0:
+                    xmlrw.saveToXML(bank, "save");
                     isRunning = false;
                     break;
                 case 1:
@@ -91,11 +94,11 @@ public class Banking {
                     break;
                 case 8:
                     //saveOrLoad(false);
-                    XMLReaderWriter.loadXML(bank);
+                    xmlrw.loadXML(bank, uim.retrieveFileName());
                     break;
                 case 9:
                     //saveOrLoad(true);
-                    XMLReaderWriter.saveToXML(bank);
+                    xmlrw.saveToXML(bank, uim.retrieveFileName());
                     break;
                 
             }

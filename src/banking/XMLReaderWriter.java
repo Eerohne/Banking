@@ -16,10 +16,30 @@ import org.xml.sax.SAXException;
  * @author cstuser
  */
 public class XMLReaderWriter {
-    private static File file = new File("./src/banking/save.xml");;
+    private File file;
+    private final static String PATH = "./src/banking/";
+
+    public XMLReaderWriter() {
+        
+    }
     
-    public static void saveToXML(Bank b) throws FileNotFoundException{
+    public NodeList xmlNode(String tagName, String fileName) throws UnsupportedEncodingException, SAXException, ParserConfigurationException, IOException{
+        file = new File(PATH + fileName + ".xml");
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        StringBuilder xmlStringBuilder = new StringBuilder();
+        ByteArrayInputStream input = new ByteArrayInputStream(
+                    xmlStringBuilder.toString().getBytes("UTF-8"));
+        Document doc = builder.parse(file);
+        doc.getDocumentElement().normalize();
+        NodeList nodeList = doc.getElementsByTagName(tagName);
+        
+        return nodeList;
+    }
+    
+    public void saveToXML(Bank b, String fileName) throws FileNotFoundException{
         try {
+            file = new File(PATH + fileName + ".xml");
             PrintWriter pw = new PrintWriter(file);
             pw.print(b.toXML());
             pw.close();
@@ -28,20 +48,22 @@ public class XMLReaderWriter {
         }
     }
     
-    public static void loadXML(Bank b) throws ParserConfigurationException, IOException, SAXException{
+    public void loadXML(Bank b, String fileName) throws ParserConfigurationException, IOException, SAXException{
         try {
             b.getClientList().clear();
-            b.fromXML();   
+            Client.setCounter(0);
+            Account.setCounter(0);
+            b.fromXML(fileName);   
         } catch (FileNotFoundException e) {
             UserInputManager.printError(e.getMessage());
         }
     }
     
-    public static File getFile() {
-        return file;
+    public File getFile() {
+        return this.file;
     }
 
-    public static void setFile(File f) {
-        XMLReaderWriter.file = f;
+    public void setFile(File f) {
+        this.file = f;
     }
 }
