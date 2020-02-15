@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package banking;
 
 import java.util.ArrayList;
@@ -11,10 +6,7 @@ import javax.xml.parsers.*;
 import java.io.*;
 import org.xml.sax.*;
 
-/**
- *
- * @author cstuser
- */
+
 public class Bank /*implements IBank*/{
     private int bankNumber;
     private String address;
